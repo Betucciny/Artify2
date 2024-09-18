@@ -1,9 +1,10 @@
+import MyTabBar from '@/components/MyTabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
     return (
-        <Tabs>
+        <Tabs tabBar={props => <MyTabBar {...props}/>}>
             <Tabs.Screen
                 name="home"
                 options={{

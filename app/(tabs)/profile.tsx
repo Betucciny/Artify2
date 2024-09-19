@@ -1,7 +1,7 @@
 import ThemedView, { ThemedText } from "@/components/ThemedComponents";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function Home() {
+export default function Profile() {
   const styles = StyleSheet.create({
     container_global: {
       flex: 1,

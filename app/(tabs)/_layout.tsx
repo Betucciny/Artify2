@@ -1,28 +1,125 @@
-import MyTabBar from '@/components/MyTabs';
-import { Ionicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
+import MyTabBar from "@/components/MyTabs";
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs, useNavigation } from "expo-router";
+import { StyleSheet } from "react-native";
 
 export default function TabLayout() {
-    return (
-        <Tabs tabBar={props => <MyTabBar {...props}/>}>
-            <Tabs.Screen
-                name="home"
-                options={{
-                    title: "Home Screen",
-                    tabBarIcon: ({color}) => <Ionicons name="log-in" size={24} color={color} />,
-                    headerShown: false,
-                    href: "/home",
-                }}
+  const styles = StyleSheet.create({
+    headerTitle: {
+      fontSize: 24,
+      fontWeight: "bold",
+    },
+  });
+
+  const navigation = useNavigation();
+
+  return (
+    <Tabs tabBar={(props) => <MyTabBar {...props} />}>
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: "Home Screen",
+          headerTitle: "",
+          headerLeftContainerStyle: { paddingLeft: 10 },
+          tabBarShowLabel: false,
+          headerLeft: () => (
+            <Ionicons
+              name="arrow-back-sharp"
+              size={24}
+              color="black"
+              onPress={() => navigation.goBack()}
             />
-            <Tabs.Screen
-                name="create"
-                options={{
-                    title: "Create",
-                    tabBarIcon: ({color}) => <Ionicons name="settings" size={24} color={color} />,
-                    headerShown: false,
-                    href: "/create",
-                }}
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+          href: "/home",
+        }}
+      />
+      <Tabs.Screen
+        name="gallery"
+        options={{
+          title: "Gallery",
+          headerTitle: "",
+          headerTitleStyle: styles.headerTitle,
+          headerLeftContainerStyle: { paddingLeft: 10 },
+          headerLeft: () => (
+            <Ionicons
+              name="arrow-back-sharp"
+              size={24}
+              color="black"
+              onPress={() => navigation.goBack()}
             />
-        </Tabs>
-    );
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="images" size={size} color={color} />
+          ),
+          href: "/gallery",
+        }}
+      />
+      <Tabs.Screen
+        name="create"
+        options={{
+          title: "Create",
+          headerTitle: "",
+          headerTitleStyle: styles.headerTitle,
+          headerLeftContainerStyle: { paddingLeft: 10 },
+          headerLeft: () => (
+            <Ionicons
+              name="arrow-back-sharp"
+              size={24}
+              color="black"
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add" size={size} color={color} />
+          ),
+          href: "/create",
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          headerTitle: "",
+          headerTitleStyle: styles.headerTitle,
+          headerLeftContainerStyle: { paddingLeft: 10 },
+          headerLeft: () => (
+            <Ionicons
+              name="arrow-back-sharp"
+              size={24}
+              color="black"
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+          href: "/profile",
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          headerTitle: "",
+          headerTitleStyle: styles.headerTitle,
+          headerLeftContainerStyle: { paddingLeft: 10 },
+          headerLeft: () => (
+            <Ionicons
+              name="arrow-back-sharp"
+              size={24}
+              color="black"
+              onPress={() => navigation.goBack()}
+            />
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="settings" size={size} color={color} />
+          ),
+          href: "/settings",
+        }}
+      />
+    </Tabs>
+  );
 }

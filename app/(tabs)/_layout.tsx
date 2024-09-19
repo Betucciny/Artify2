@@ -20,6 +20,7 @@ export default function TabLayout() {
         options={{
           title: "Home Screen",
           headerTitle: "",
+          headerStyle: { backgroundColor: "white" },
           headerLeftContainerStyle: { paddingLeft: 10 },
           tabBarShowLabel: false,
           headerLeft: () => (
@@ -41,6 +42,7 @@ export default function TabLayout() {
         options={{
           title: "Gallery",
           headerTitle: "",
+          headerStyle: { backgroundColor: "white" },
           headerTitleStyle: styles.headerTitle,
           headerLeftContainerStyle: { paddingLeft: 10 },
           headerLeft: () => (
@@ -62,6 +64,7 @@ export default function TabLayout() {
         options={{
           title: "Create",
           headerTitle: "",
+          headerStyle: { backgroundColor: "white" },
           headerTitleStyle: styles.headerTitle,
           headerLeftContainerStyle: { paddingLeft: 10 },
           headerLeft: () => (
@@ -83,6 +86,7 @@ export default function TabLayout() {
         options={{
           title: "Profile",
           headerTitle: "",
+          headerStyle: { backgroundColor: "white" },
           headerTitleStyle: styles.headerTitle,
           headerLeftContainerStyle: { paddingLeft: 10 },
           headerLeft: () => (
@@ -104,6 +108,7 @@ export default function TabLayout() {
         options={{
           title: "Settings",
           headerTitle: "",
+          headerStyle: { backgroundColor: "white" },
           headerTitleStyle: styles.headerTitle,
           headerLeftContainerStyle: { paddingLeft: 10 },
           headerLeft: () => (

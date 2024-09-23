@@ -19,18 +19,7 @@ export default function TabLayout() {
         name="home"
         options={{
           title: "Home Screen",
-          headerTitle: "",
-          headerStyle: { backgroundColor: "white" },
-          headerLeftContainerStyle: { paddingLeft: 10 },
-          tabBarShowLabel: false,
-          headerLeft: () => (
-            <Ionicons
-              name="arrow-back-sharp"
-              size={24}
-              color="black"
-              onPress={() => navigation.goBack()}
-            />
-          ),
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -41,18 +30,7 @@ export default function TabLayout() {
         name="gallery"
         options={{
           title: "Gallery",
-          headerTitle: "",
-          headerStyle: { backgroundColor: "white" },
-          headerTitleStyle: styles.headerTitle,
-          headerLeftContainerStyle: { paddingLeft: 10 },
-          headerLeft: () => (
-            <Ionicons
-              name="arrow-back-sharp"
-              size={24}
-              color="black"
-              onPress={() => navigation.goBack()}
-            />
-          ),
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="images" size={size} color={color} />
           ),
@@ -63,18 +41,7 @@ export default function TabLayout() {
         name="create"
         options={{
           title: "Create",
-          headerTitle: "",
-          headerStyle: { backgroundColor: "white" },
-          headerTitleStyle: styles.headerTitle,
-          headerLeftContainerStyle: { paddingLeft: 10 },
-          headerLeft: () => (
-            <Ionicons
-              name="arrow-back-sharp"
-              size={24}
-              color="black"
-              onPress={() => navigation.goBack()}
-            />
-          ),
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="add" size={size} color={color} />
           ),
@@ -85,18 +52,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-          headerTitle: "",
-          headerStyle: { backgroundColor: "white" },
-          headerTitleStyle: styles.headerTitle,
-          headerLeftContainerStyle: { paddingLeft: 10 },
-          headerLeft: () => (
-            <Ionicons
-              name="arrow-back-sharp"
-              size={24}
-              color="black"
-              onPress={() => navigation.goBack()}
-            />
-          ),
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" size={size} color={color} />
           ),
@@ -107,18 +63,7 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: "Settings",
-          headerTitle: "",
-          headerStyle: { backgroundColor: "white" },
-          headerTitleStyle: styles.headerTitle,
-          headerLeftContainerStyle: { paddingLeft: 10 },
-          headerLeft: () => (
-            <Ionicons
-              name="arrow-back-sharp"
-              size={24}
-              color="black"
-              onPress={() => navigation.goBack()}
-            />
-          ),
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings" size={size} color={color} />
           ),

@@ -2,18 +2,28 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs/src/types";
 import { Dimensions } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function MyTabBar({
   state,
   descriptors,
   navigation,
 }: BottomTabBarProps) {
+  const colorBackground = useThemeColor({}, "background");
+  const colorOnBackground = useThemeColor({}, "onBackground");
+  const colorPrimary = useThemeColor({}, "primary");
+  const colorOnPrimary = useThemeColor({}, "onPrimary");
+  const colorPrimaryContainer = useThemeColor({}, "primaryContainer");
+  const colorOnPrimaryContainer = useThemeColor({}, "onPrimaryContainer");
+
+  const colorOutline = useThemeColor({}, "outline");
+
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
-      backgroundColor: "white",
+      backgroundColor: colorBackground,
       borderWidth: 1,
-      borderColor: "#ddd",
+      borderColor: colorOutline,
       borderRadius: 50,
       margin: 5,
       height: 90,
@@ -33,7 +43,7 @@ export default function MyTabBar({
       height: 24,
     },
     middleTabButton: {
-      backgroundColor: "blue",
+      backgroundColor: colorPrimaryContainer,
       borderRadius: 50,
       width: 70,
       height: 70,
@@ -100,7 +110,13 @@ export default function MyTabBar({
             {options.tabBarIcon &&
               options.tabBarIcon({
                 focused: isFocused,
-                color: isFocused ? "blue" : "black",
+                color: isMiddle
+                  ? isFocused
+                    ? colorPrimary
+                    : colorOnPrimary
+                  : isFocused
+                    ? colorPrimary
+                    : colorOnBackground,
                 size: 35,
               })}
           </TouchableOpacity>

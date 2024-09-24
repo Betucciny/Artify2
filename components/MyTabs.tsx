@@ -9,28 +9,37 @@ export default function MyTabBar({
   descriptors,
   navigation,
 }: BottomTabBarProps) {
-  const colorBackground = useThemeColor({}, "background");
-  const colorOnBackground = useThemeColor({}, "onBackground");
+  const colorSurface = useThemeColor({}, "surface");
+  const colorOnSurface = useThemeColor({}, "onSurface");
   const colorPrimary = useThemeColor({}, "primary");
   const colorOnPrimary = useThemeColor({}, "onPrimary");
   const colorPrimaryContainer = useThemeColor({}, "primaryContainer");
   const colorOnPrimaryContainer = useThemeColor({}, "onPrimaryContainer");
-
+  const colorShadow = useThemeColor({}, "shadow");
   const colorOutline = useThemeColor({}, "outline");
 
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
-      backgroundColor: colorBackground,
-      borderWidth: 1,
+      backgroundColor: colorSurface,
+      // borderWidth: 1,
       borderColor: colorOutline,
-      borderRadius: 50,
-      margin: 5,
-      height: 90,
+      borderTopStartRadius: 20,
+      borderTopEndRadius: 20,
+      margin: 0,
+      height: 80,
       position: "absolute",
-      bottom: 10,
-      left: 5,
-      right: 5,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      shadowColor: colorShadow,
+      shadowOffset: {
+        width: 0,
+        height: 15,
+      },
+      shadowOpacity: 0.85,
+      shadowRadius: 30.0,
+      elevation: 24,
     },
     tabButton: {
       flex: 1,
@@ -43,13 +52,15 @@ export default function MyTabBar({
       height: 24,
     },
     middleTabButton: {
-      backgroundColor: colorPrimaryContainer,
+      backgroundColor: colorPrimary,
+      borderColor: colorOutline,
+      borderWidth: 1,
       borderRadius: 50,
       width: 70,
       height: 70,
       position: "absolute",
       left: Dimensions.get("window").width / 2 - 40,
-      bottom: 50,
+      bottom: 40,
       zIndex: 100,
     },
     leftMiddleTabButton: {
@@ -112,12 +123,12 @@ export default function MyTabBar({
                 focused: isFocused,
                 color: isMiddle
                   ? isFocused
-                    ? colorPrimary
-                    : colorOnPrimary
+                    ? colorOnPrimary
+                    : colorOnPrimaryContainer
                   : isFocused
                     ? colorPrimary
-                    : colorOnBackground,
-                size: 35,
+                    : colorOnSurface,
+                size: isMiddle ? 50 : 40,
               })}
           </TouchableOpacity>
         );

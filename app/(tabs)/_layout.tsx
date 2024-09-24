@@ -43,7 +43,7 @@ export default function TabLayout() {
           title: "Create",
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="add" size={size} color={color} />
+            <Ionicons name="aperture" size={size} color={color} />
           ),
           href: "/create",
         }}

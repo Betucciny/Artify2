@@ -1,13 +1,10 @@
-import { useColorScheme } from "@/hooks/useColorScheme";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { DarkTheme, LightTheme } from "@/constants/Colors";
+import { useColorScheme } from "react-native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { PaperProvider } from "react-native-paper";
 
 export default function Root() {
   const colorScheme = useColorScheme();
@@ -26,11 +23,11 @@ export default function Root() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <PaperProvider theme={colorScheme === "dark" ? DarkTheme : LightTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
-    </ThemeProvider>
+    </PaperProvider>
   );
 }

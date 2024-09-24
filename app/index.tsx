@@ -1,15 +1,13 @@
-import { ThemedButton } from "@/components/ThemedComponents";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { router } from "expo-router";
 import { View, StyleSheet, Text } from "react-native";
+import { Button, useTheme } from "react-native-paper";
 
 export default function App() {
-  const colorBackground = useThemeColor({}, "background");
-  const colorOnBackground = useThemeColor({}, "onBackground");
+  const theme = useTheme();
   const styles = StyleSheet.create({
     container_global: {
       flex: 1,
-      backgroundColor: colorBackground,
+      backgroundColor: theme.colors.background,
       justifyContent: "space-evenly",
       alignItems: "center",
     },
@@ -18,13 +16,13 @@ export default function App() {
       alignItems: "center",
     },
     title_text: {
-      color: colorOnBackground,
+      color: theme.colors.primary,
       textAlign: "center",
       fontSize: 30,
       fontWeight: "bold",
     },
     description_text: {
-      color: colorOnBackground,
+      color: theme.colors.onBackground,
       fontSize: 25,
       fontWeight: "normal",
     },
@@ -54,7 +52,9 @@ export default function App() {
         <Text style={styles.description_text}>Apply Artistic Styles</Text>
       </View>
       <View style={styles.sub_container}>
-        <ThemedButton onPress={controlOnPress} title={"Start"} />
+        <Button onPress={controlOnPress}>
+          <Text>Get Started</Text>
+        </Button>
       </View>
     </View>
   );

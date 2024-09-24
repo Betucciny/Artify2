@@ -1,20 +1,19 @@
-import ThemedView, { ThemedText } from "@/components/ThemedComponents";
-import { View, Text, StyleSheet } from "react-native";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { StyleSheet, View, Text } from "react-native";
+import { useTheme } from "react-native-paper";
 
 export default function Gallery() {
-  const colorBackground = useThemeColor({}, "background");
+  const theme = useTheme();
   const styles = StyleSheet.create({
     container_global: {
       flex: 1,
-      backgroundColor: colorBackground,
+      backgroundColor: theme.colors.background,
       justifyContent: "space-evenly",
       alignItems: "center",
     },
   });
   return (
-    <ThemedView style={styles.container_global}>
-      <ThemedText>Adios mundo</ThemedText>
-    </ThemedView>
+    <View style={styles.container_global}>
+      <Text>Adios mundo</Text>
+    </View>
   );
 }

@@ -2,28 +2,21 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs/src/types";
 import { Dimensions } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useTheme } from "react-native-paper";
 
 export default function MyTabBar({
   state,
   descriptors,
   navigation,
 }: BottomTabBarProps) {
-  const colorSurface = useThemeColor({}, "surface");
-  const colorOnSurface = useThemeColor({}, "onSurface");
-  const colorPrimary = useThemeColor({}, "primary");
-  const colorOnPrimary = useThemeColor({}, "onPrimary");
-  const colorPrimaryContainer = useThemeColor({}, "primaryContainer");
-  const colorOnPrimaryContainer = useThemeColor({}, "onPrimaryContainer");
-  const colorShadow = useThemeColor({}, "shadow");
-  const colorOutline = useThemeColor({}, "outline");
+  const theme = useTheme();
 
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
-      backgroundColor: colorSurface,
+      backgroundColor: theme.colors.background,
       // borderWidth: 1,
-      borderColor: colorOutline,
+      borderColor: theme.colors.outline,
       borderTopStartRadius: 20,
       borderTopEndRadius: 20,
       margin: 0,
@@ -32,7 +25,7 @@ export default function MyTabBar({
       bottom: 0,
       left: 0,
       right: 0,
-      shadowColor: colorShadow,
+      shadowColor: theme.colors.shadow,
       shadowOffset: {
         width: 0,
         height: 15,
@@ -52,8 +45,8 @@ export default function MyTabBar({
       height: 24,
     },
     middleTabButton: {
-      backgroundColor: colorPrimary,
-      borderColor: colorOutline,
+      backgroundColor: theme.colors.primary,
+      borderColor: theme.colors.outline,
       borderWidth: 1,
       borderRadius: 50,
       width: 70,
@@ -123,11 +116,11 @@ export default function MyTabBar({
                 focused: isFocused,
                 color: isMiddle
                   ? isFocused
-                    ? colorOnPrimary
-                    : colorOnPrimaryContainer
+                    ? theme.colors.onPrimary
+                    : theme.colors.onPrimaryContainer
                   : isFocused
-                    ? colorPrimary
-                    : colorOnSurface,
+                    ? theme.colors.primary
+                    : theme.colors.onSurface,
                 size: isMiddle ? 50 : 40,
               })}
           </TouchableOpacity>

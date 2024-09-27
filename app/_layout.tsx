@@ -1,5 +1,5 @@
 import { DarkTheme, LightTheme } from "@/constants/Colors";
-import { useColorScheme } from "react-native";
+import { useColorScheme, ColorSchemeName } from "react-native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -34,7 +34,7 @@ export default function Root() {
 const AppContent = ({
   systemColorScheme,
 }: {
-  systemColorScheme: "light" | "dark" | undefined | null;
+  systemColorScheme: ColorSchemeName;
 }) => {
   const { preferences } = usePreferences();
 

@@ -1,6 +1,6 @@
 import MyTabBar from "@/components/MyTabs";
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs, useNavigation } from "expo-router";
+import { Tabs, router } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function TabLayout() {
@@ -10,8 +10,6 @@ export default function TabLayout() {
       fontWeight: "bold",
     },
   });
-
-  const navigation = useNavigation();
 
   return (
     <Tabs tabBar={(props) => <MyTabBar {...props} />}>
@@ -49,14 +47,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="styles"
         options={{
-          title: "Profile",
+          title: "Styles",
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color={color} />
+            <Ionicons name="color-palette" size={size} color={color} />
           ),
-          href: "/profile",
+          href: "/styles",
         }}
       />
       <Tabs.Screen

@@ -1,19 +1,53 @@
-import { StyleSheet, View, Text } from "react-native";
-import { useTheme } from "react-native-paper";
+import { useState } from "react";
+import Screen from "@/components/Screen";
+import Permissions from "@/components/settings/Permissions";
+import Section, { ItemProps } from "@/components/settings/Section";
+
+const itemsAbout: ItemProps[] = [
+  {
+    title: "Privacy Policy",
+    href: "/extras/privacy_policy",
+  },
+  {
+    title: "Terms of Use",
+    href: "/extras/terms_of_use",
+  },
+];
+
+const itemsSupport: ItemProps[] = [
+  {
+    title: "Report a Problem",
+    href: "/extras/report_problem",
+  },
+  {
+    title: "FAQ",
+    href: "/extras/faq",
+  },
+];
 
 export default function Settings() {
-  const theme = useTheme();
-  const styles = StyleSheet.create({
-    container_global: {
-      flex: 1,
-      backgroundColor: theme.colors.background,
-      justifyContent: "space-evenly",
-      alignItems: "center",
+  const [cameraStatus, setCameraStatus] = useState(false);
+  const [galleryStatus, setGalleryStatus] = useState(false);
+  const permissions = [
+    {
+      icon: "camera",
+      title: "Camera",
+      status: cameraStatus,
+      setIsSwitchOn: setCameraStatus,
     },
-  });
+    {
+      icon: "file-image-outline",
+      title: "Gallery",
+      status: galleryStatus,
+      setIsSwitchOn: setGalleryStatus,
+    },
+  ];
+
   return (
-    <View style={styles.container_global}>
-      <Text>Adios mundo</Text>
-    </View>
+    <Screen title="Settings">
+      <Permissions permissions={permissions} />
+      <Section title="About" items={itemsAbout} />
+      <Section title="Help" items={itemsSupport} />
+    </Screen>
   );
 }

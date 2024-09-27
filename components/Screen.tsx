@@ -24,6 +24,8 @@ export default function Screen({ title, children }: ScreenProps) {
     contentContainer: {
       flex: 1,
       padding: 20,
+      marginBottom: 80,
+      paddingBottom: 80,
     },
     titleText: {
       marginBottom: 16,

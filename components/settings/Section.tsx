@@ -5,9 +5,10 @@ import { Href, router } from "expo-router";
 export type ItemProps = {
   title: string;
   href: Href<string | object>;
+  divider?: boolean;
 };
 
-function Item({ title, href }: ItemProps) {
+function Item({ title, href, divider }: ItemProps) {
   const styles = StyleSheet.create({
     container: {
       padding: 16,
@@ -25,7 +26,7 @@ function Item({ title, href }: ItemProps) {
       >
         <Text variant="titleMedium">{title}</Text>
       </TouchableOpacity>
-      <Divider />
+      {divider && <Divider />}
     </>
   );
 }
@@ -57,7 +58,7 @@ export default function Section({ title, items }: SectionProps) {
       </Text>
       <Surface style={styles.surface}>
         {items.map((item, index) => (
-          <Item key={index} {...item} />
+          <Item key={index} {...item} divider={index !== items.length - 1} />
         ))}
       </Surface>
     </View>

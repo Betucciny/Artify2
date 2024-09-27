@@ -3,7 +3,7 @@ import { MD3LightTheme, MD3DarkTheme } from "react-native-paper";
 const tintColorLight = "#0a7ea4";
 const tintColorDark = "#fff";
 
-const Colors = {
+export const Colors = {
   light: {
     primary: "rgb(0, 95, 175)",
     onPrimary: "rgb(255, 255, 255)",

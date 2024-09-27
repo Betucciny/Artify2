@@ -2,6 +2,8 @@ import { useState } from "react";
 import Screen from "@/components/Screen";
 import Permissions from "@/components/settings/Permissions";
 import Section, { ItemProps } from "@/components/settings/Section";
+import ThemeUser from "@/components/settings/ThemeUser";
+import Spacer from "@/components/Spacer";
 
 const itemsAbout: ItemProps[] = [
   {
@@ -48,6 +50,8 @@ export default function Settings() {
       <Permissions permissions={permissions} />
       <Section title="About" items={itemsAbout} />
       <Section title="Help" items={itemsSupport} />
+      <ThemeUser />
+      <Spacer margin={20} />
     </Screen>
   );
 }

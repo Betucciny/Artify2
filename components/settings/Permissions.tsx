@@ -15,6 +15,7 @@ type SingularPermissionProps = {
   title: string;
   status: boolean;
   setIsSwitchOn: Dispatch<SetStateAction<boolean>>;
+  divider?: boolean;
 };
 
 function SingularPermission({
@@ -22,6 +23,7 @@ function SingularPermission({
   title,
   status,
   setIsSwitchOn,
+  divider,
 }: SingularPermissionProps) {
   const theme = useTheme();
 
@@ -44,7 +46,7 @@ function SingularPermission({
         <Text variant="titleMedium">{title}</Text>
         <Switch value={status} onValueChange={() => setIsSwitchOn(!status)} />
       </View>
-      <Divider />
+      {divider && <Divider />}
     </>
   );
 }
@@ -83,6 +85,7 @@ export default function Permissions({ permissions }: PermissionsProps) {
             setIsSwitchOn={(value) => {
               permission.setIsSwitchOn(value);
             }}
+            divider={index !== permissions.length - 1}
           />
         ))}
       </Surface>

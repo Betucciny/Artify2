@@ -3,11 +3,13 @@ import { useColorScheme } from "react-native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useState, Context } from "react";
 import { PaperProvider } from "react-native-paper";
+import { PreferencesProvider } from "@/components/contexts/PreferencesProvider";
+import { usePreferences } from "@/hooks/usePreferences";
 
 export default function Root() {
-  const colorScheme = useColorScheme();
+  const systemColorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -23,6 +25,25 @@ export default function Root() {
   }
 
   return (
+    <PreferencesProvider>
+      <AppContent systemColorScheme={systemColorScheme} />
+    </PreferencesProvider>
+  );
+}
+
+const AppContent = ({
+  systemColorScheme,
+}: {
+  systemColorScheme: "light" | "dark" | undefined | null;
+}) => {
+  const { preferences } = usePreferences();
+
+  const colorScheme =
+    preferences.colorScheme === "system"
+      ? systemColorScheme
+      : preferences.colorScheme;
+
+  return (
     <PaperProvider theme={colorScheme === "dark" ? DarkTheme : LightTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -31,4 +52,4 @@ export default function Root() {
       </Stack>
     </PaperProvider>
   );
-}
+};

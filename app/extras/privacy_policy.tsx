@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   subheading: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#4A90E2',
+    color: '#333',
     marginBottom: 10,
   },
   paragraph: {

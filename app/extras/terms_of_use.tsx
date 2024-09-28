@@ -22,39 +22,39 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children }) => {
 
 export default function TermsOfUse() {
   return (
-    <Screen title="Términos de Uso">
-      <ScrollView contentContainerStyle={styles.container}>
+    <Screen title="Terms of Use">
+      <ScrollView>
         
         <Text style={styles.paragraph}>
-          Bienvenido a nuestra aplicación de transformación de imágenes impulsada por IA. Al utilizar este servicio, aceptas cumplir con los siguientes términos y condiciones. Por favor, léelos detenidamente para entender tus derechos y obligaciones.
+          Welcome to our AI-powered image transformation application. By using this service, you agree to comply with the following terms and conditions. Please read them carefully to understand your rights and obligations.
         </Text>
 
-        <AccordionItem title="1. Uso del Servicio">
-          Nuestra aplicación permite a los usuarios cargar imágenes y aplicar filtros artísticos utilizando Inteligencia Artificial (IA). Los estilos disponibles incluyen Barroco, Renacimiento y otros movimientos artísticos. El uso de este servicio es estrictamente para fines personales y no comerciales.
+        <AccordionItem title="1. Use of the Service">
+          Our application allows users to upload images and apply artistic filters using Artificial Intelligence (AI). The available styles include Baroque, Renaissance, and other artistic movements. The use of this service is strictly for personal and non-commercial purposes.
         </AccordionItem>
 
-        <AccordionItem title="2. Contenido Generado por el Usuario">
-          Al cargar una imagen, confirmas que posees los derechos de la imagen o que has obtenido permiso del propietario legítimo. La aplicación no reclama la propiedad de las imágenes procesadas, pero nos reservamos el derecho de almacenar y utilizar las imágenes para mejorar nuestro modelo de IA.
+        <AccordionItem title="2. User-Generated Content">
+          By uploading an image, you confirm that you own the rights to the image or have obtained permission from the rightful owner. The application does not claim ownership of the processed images, but we reserve the right to store and use the images to improve our AI model.
         </AccordionItem>
 
-        <AccordionItem title="3. Privacidad y Recopilación de Datos">
-          Nuestra aplicación procesa tus imágenes en servidores seguros utilizando algoritmos avanzados de IA. Priorizamos la privacidad del usuario y no compartimos datos personales con terceros. Sin embargo, los datos anonimizados pueden ser utilizados para el entrenamiento y la mejora continua de los modelos de IA.
+        <AccordionItem title="3. Privacy and Data Collection">
+          Our application processes your images on secure servers using advanced AI algorithms. We prioritize user privacy and do not share personal data with third parties. However, anonymized data may be used for training and ongoing improvement of the AI models.
         </AccordionItem>
 
-        <AccordionItem title="4. Derechos de Autor de Obras Generadas por IA">
-          Las imágenes transformadas creadas por nuestra IA pueden incorporar estilos artísticos que son de dominio público (como el Barroco o el Renacimiento). Sin embargo, la salida final se considera contenido generado por el usuario, y los derechos de autor permanecen con el usuario, sujeto a cualquier derecho de terceros sobre la imagen original cargada.
+        <AccordionItem title="4. Copyright of AI-Generated Works">
+          The transformed images created by our AI may incorporate artistic styles that are in the public domain (such as Baroque or Renaissance). However, the final output is considered user-generated content, and copyright remains with the user, subject to any third-party rights over the original uploaded image.
         </AccordionItem>
 
-        <AccordionItem title="5. Limitaciones del Servicio">
-          Los algoritmos de IA de la aplicación tienen como objetivo proporcionar transformaciones artísticas precisas. Sin embargo, no podemos garantizar la perfección en la precisión del estilo o la calidad de la imagen. Los resultados pueden variar según la imagen de entrada y las capacidades de procesamiento en el momento de uso.
+        <AccordionItem title="5. Service Limitations">
+          The AI algorithms of the application aim to provide accurate artistic transformations. However, we cannot guarantee perfection in style accuracy or image quality. Results may vary depending on the input image and processing capabilities at the time of use.
         </AccordionItem>
 
-        <AccordionItem title="6. Modificaciones a los Términos">
-          Nos reservamos el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación. El uso continuo de la aplicación después de cualquier cambio constituirá tu consentimiento a dichos cambios.
+        <AccordionItem title="6. Modifications to the Terms">
+          We reserve the right to modify these Terms of Use at any time. Changes will be effective immediately upon posting. Continued use of the application after any changes constitutes your consent to those changes.
         </AccordionItem>
 
-        <AccordionItem title="7. Contáctanos">
-          Si tienes alguna pregunta sobre estos Términos de Uso, por favor contáctanos en support@aiartapp.com.
+        <AccordionItem title="7. Contact Us">
+          If you have any questions about these Terms of Use, please contact us at support@aiartapp.com.
         </AccordionItem>
 
       </ScrollView>
@@ -63,22 +63,17 @@ export default function TermsOfUse() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: "#F9F9F9", 
-    borderRadius: 8, 
-  },
   title: {
     fontSize: 28,
     fontWeight: "bold",
     marginBottom: 15,
     color: "#333", 
+    textAlign: "left", 
   },
   subTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 5,
+    marginVertical: 10, 
     color: "#555", 
   },
   paragraph: {
@@ -86,16 +81,19 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginBottom: 15,
     color: "#666", 
+    marginHorizontal: 15, 
   },
   accordionItem: {
     marginBottom: 10,
     backgroundColor: "#fff", 
     borderRadius: 8, 
-    padding: 10,
+    padding: 15, 
     shadowColor: "#000", 
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 2, 
+    borderWidth: 1, 
+    borderColor: "#ddd", 
   },
 });

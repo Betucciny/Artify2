@@ -16,6 +16,150 @@ type Style = {
 
 export const data_styles: Style[] = [
     {
+        name: "Abstract",
+        images: [
+            {
+                src: require("@assets/Images/Abstract/0.jpg"),
+                title: "Squares with Concentric Circles",
+                author: "Wassily Kandinsky",
+                description: "A vibrant exploration of color and form, this work by Kandinsky uses circles within squares to represent emotional and spiritual dynamics, characteristic of the abstract movement."
+            },
+            {
+                src: require("@assets/Images/Abstract/1.jpg"),
+                title: "Composition VII",
+                author: "Wassily Kandinsky",
+                description: "One of Kandinsky's most complex works, Composition VII, represents his theories on spirituality in art, using a chaotic mixture of colors and forms to create an intense visual experience."
+            },
+            {
+                src: require("@assets/Images/Abstract/2.jpg"),
+                title: "Composition VIII",
+                author: "Wassily Kandinsky",
+                description: "This painting emphasizes geometric shapes and a sense of dynamism, reflecting Kandinsky's deep interest in music and its abstract forms."
+            },
+            {
+                src: require("@assets/Images/Abstract/3.jpg"),
+                title: "Yellow-Red-Blue",
+                author: "Wassily Kandinsky",
+                description: "In this work, Kandinsky juxtaposes large areas of color with geometric forms, exploring the relationship between form and color in abstract art."
+            },
+            {
+                src: require("@assets/Images/Abstract/4.jpg"),
+                title: "Autumn Rhythm (Number 30)",
+                author: "Jackson Pollock",
+                description: "A hallmark of Pollock's drip technique, this painting represents the raw energy and movement inherent in abstract expressionism."
+            }
+        ],
+        description: "Abstract art is a style that emphasizes shapes, colors, and forms over realistic representations, focusing on emotional and spiritual expression rather than literal depictions of reality."
+    },
+    {
+        name: "Baroque",
+        images: [
+            {
+                src: require("@assets/Images/Baroque/0.jpg"),
+                title: "Self-Portrait with a Sunflower",
+                author: "Anthony van Dyck",
+                description: "This self-portrait reflects van Dyck's mastery of portraiture, capturing the artist in a moment of grace and elegance, typical of the Baroque era's dramatic lighting and attention to detail."
+            },
+            {
+                src: require("@assets/Images/Baroque/1.jpg"),
+                title: "Judith Slaying Holofernes",
+                author: "Artemisia Gentileschi",
+                description: "A powerful Baroque painting, depicting the biblical story of Judith beheading Holofernes. Gentileschi conveys intense emotion and dynamic composition, showcasing her command of chiaroscuro."
+            },
+            {
+                src: require("@assets/Images/Baroque/2.jpg"),
+                title: "Girl with a Pearl Earring",
+                author: "Johannes Vermeer",
+                description: "Often referred to as the 'Mona Lisa of the North,' Vermeer’s masterpiece captures the mysterious gaze of a young girl, showcasing the artist’s delicate handling of light and texture."
+            },
+            {
+                src: require("@assets/Images/Baroque/3.jpg"),
+                title: "Las Meninas",
+                author: "Diego Velázquez",
+                description: "This complex composition features a group of figures surrounding the Infanta Margarita, with Velázquez himself appearing in the scene. 'Las Meninas' is celebrated for its intricate use of perspective and light."
+            },
+            {
+                src: require("@assets/Images/Baroque/4.jpg"),
+                title: "The Night Watch",
+                author: "Rembrandt van Rijn",
+                description: "One of Rembrandt's most famous works, this group portrait of a militia company is renowned for its dramatic use of light and shadow, characteristic of the Baroque style."
+            }
+        ],
+        description: "Baroque art is known for its dramatic use of light, rich detail, and emotional intensity. It often depicts religious, historical, or mythological subjects with dynamic compositions and a sense of movement."
+    },
+    {
+        name: "Cubism",
+        images: [
+            {
+                src: require("@assets/Images/Cubism/0.jpg"),
+                title: "Violin and Candlestick",
+                author: "Georges Braque",
+                description: "This work is an iconic example of Analytical Cubism, breaking down objects into fragmented geometric shapes and showing multiple perspectives at once."
+            },
+            {
+                src: require("@assets/Images/Cubism/1.jpg"),
+                title: "Man with a Guitar",
+                author: "Juan Gris",
+                description: "In this Cubist painting, Gris uses vibrant colors and geometric shapes to depict a man holding a guitar, blending human form and objects into a unified structure."
+            },
+            {
+                src: require("@assets/Images/Cubism/2.jpg"),
+                title: "Les Demoiselles d'Avignon",
+                author: "Pablo Picasso",
+                description: "A revolutionary work that marked the beginning of Cubism. Picasso depicts five nude women with bodies broken into geometric planes and faces influenced by African masks."
+            },
+            {
+                src: require("@assets/Images/Cubism/3.jpg"),
+                title: "Portrait of Ambroise Vollard",
+                author: "Pablo Picasso",
+                description: "This Cubist portrait features Ambroise Vollard, a major patron of Picasso, with sharp geometric forms that break down the face into an almost abstract structure."
+            },
+            {
+                src: require("@assets/Images/Cubism/4.jpg"),
+                title: "Woman with a Hat",
+                author: "Pablo Picasso",
+                description: "A work that combines Cubist influences with expressive use of color, showing a woman's face with a hat, deconstructed into vibrant and geometric forms."
+            }
+        ],
+        description: "Cubism is an artistic movement that broke away from traditional representations, deconstructing objects into geometric shapes and showing multiple viewpoints in a single image. Pioneered by artists like Pablo Picasso and Georges Braque, it revolutionized 20th-century painting."
+        },
+    {
+        name: "Romanticism",
+        images: [
+            {
+                src: require("@assets/Images/Romanticism/0.jpg"),
+                title: "The Kiss",
+                author: "Francesco Hayez",
+                description: "A quintessential Romantic painting, 'The Kiss' captures a moment of passionate embrace, symbolizing themes of love and nationalistic fervor."
+            },
+            {
+                src: require("@assets/Images/Romanticism/1.jpg"),
+                title: "The Raft of the Medusa",
+                author: "Théodore Géricault",
+                description: "This dramatic composition depicts the aftermath of a shipwreck, showcasing Géricault’s interest in human suffering and the sublime power of nature."
+            },
+            {
+                src: require("@assets/Images/Romanticism/2.jpg"),
+                title: "Liberty Leading the People",
+                author: "Eugène Delacroix",
+                description: "A symbol of the French Revolution, this iconic painting depicts Liberty personified, leading a diverse group of revolutionaries forward, with the French flag in hand."
+            },
+            {
+                src: require("@assets/Images/Romanticism/3.jpg"),
+                title: "La Maja Desnuda",
+                author: "Francisco de Goya",
+                description: "One of Goya’s most famous works, this painting of a reclining nude woman challenges traditional depictions of the female form, blending sensuality and realism."
+            },
+            {
+                src: require("@assets/Images/Romanticism/4.jpg"),
+                title: "The Nightmare",
+                author: "Henry Fuseli",
+                description: "This eerie painting captures a woman in a deep sleep, haunted by a demonic presence. It represents Fuseli’s fascination with dreams, the supernatural, and the darker aspects of human psychology."
+            }
+        ],
+        description: "Romanticism emphasized emotion, individualism, and the awe of nature. It often depicted dramatic scenes of human passion, historical events, and the sublime beauty of the natural world."
+        },
+        {
         name: "Realism",
         images: [
             {

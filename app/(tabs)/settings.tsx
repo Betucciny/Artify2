@@ -51,7 +51,7 @@ export default function Settings() {
       <Section title="About" items={itemsAbout} />
       <Section title="Help" items={itemsSupport} />
       <ThemeUser />
-      <Spacer margin={20} />
+      <Spacer margin={60} />
     </Screen>
   );
 }

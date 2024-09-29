@@ -102,7 +102,6 @@ export default function InfoCard({ data, stylePhoto }: InfoCardProps) {
               });
             }}
           >
-            {" "}
             Create New Image
           </Button>
         </View>

@@ -3,9 +3,10 @@ import { useRouter } from "expo-router";
 import CarruselStyles from "@/components/images/CarruselStyles";
 import PhotoGallery from "@/components/images/PhotoGallery";
 import Spacer from "@/components/Spacer";
-import { Text } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { Asset } from "expo-asset";
 import { useImageAssets } from "@/hooks/useImageAssets";
+import { StyleSheet, View } from "react-native";
 
 export default function Styles() {
   const router = useRouter();
@@ -39,6 +40,16 @@ export default function Styles() {
     });
   }
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      height: "100%",
+    },
+  });
+
   return (
     <Screen title="Styles">
       {allImagesDownloaded ? (
@@ -55,7 +66,9 @@ export default function Styles() {
           />
         </>
       ) : (
-        <Text>Loading...</Text>
+        <View style={styles.container}>
+          <ActivityIndicator animating={true} size="large" />
+        </View>
       )}
       <Spacer margin={50} />
     </Screen>

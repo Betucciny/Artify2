@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Text } from "react-native-paper";
+import { Text, ActivityIndicator } from "react-native-paper";
 import Screen from "@/components/Screen";
 import GalleryPreview from "react-native-gallery-preview";
 import PhotoGallery from "@/components/images/PhotoGallery";
-import { ImageURISource } from "react-native";
+import { ImageURISource, View, StyleSheet } from "react-native";
 import { Asset } from "expo-asset";
 
 const photos: string[] = [
@@ -34,6 +34,16 @@ export default function Gallery() {
     downloadAssets();
   }, [imageAssets, allDownloaded]);
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      height: "100%",
+    },
+  });
+
   return (
     <Screen title="Gallery">
       {imageAssets.length === 0 ? (
@@ -54,7 +64,9 @@ export default function Gallery() {
           />
         </>
       ) : (
-        <Text>Loading...</Text>
+        <View style={styles.container}>
+          <ActivityIndicator animating={true} size="large" />
+        </View>
       )}
     </Screen>
   );

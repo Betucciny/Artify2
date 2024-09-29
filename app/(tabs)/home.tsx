@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <Screen title="Artify">
       <Section title="Gallery" images={galleryImagesUri} href="/gallery" />
-      <Section title="Styles" images={stylesImagesUri} href="/create" />
+      <Section title="Styles" images={stylesImagesUri} href="/styles" />
     </Screen>
   );
 }

@@ -2,13 +2,12 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Photo() {
-  const params = useLocalSearchParams();
+export default function Create() {
+  const { style_photo } = useLocalSearchParams();
   return (
     <View>
       <Stack.Screen options={{ headerShown: false }} />
-      <Text>Photo</Text>
-      <Text>{params.name_id}</Text>
+      <Text> {style_photo} </Text>
     </View>
   );
 }

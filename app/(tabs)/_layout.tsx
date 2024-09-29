@@ -36,17 +36,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="create"
-        options={{
-          title: "Create",
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="aperture" size={size} color={color} />
-          ),
-          href: "/create",
-        }}
-      />
-      <Tabs.Screen
         name="styles"
         options={{
           title: "Styles",

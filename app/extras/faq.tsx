@@ -2,6 +2,7 @@ import Screen from "@/components/Screen";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Surface, Text, useTheme } from "react-native-paper";
+import { faqs } from "@/constants/extras";
 
 export default function Faq() {
   const { colors } = useTheme();
@@ -36,34 +37,6 @@ export default function Faq() {
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      question: "What is Artify?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec ligula in velit maximus tincidunt in gravida augue. Suspendisse potenti. Aenean faucibus felis ut arcu interdum, eu vestibulum sapien porta. Aliquam ligula augue, viverra id tincidunt id, dictum eu lorem. Proin volutpat mi orci, sed blandit eros pellentesque nec.",
-    },
-    {
-      question: "How do I upload my art?",
-      answer:
-        "Aliquam porttitor egestas est, et semper ante dignissim non. In placerat gravida molestie. Fusce tortor libero, tempus vitae ipsum non, imperdiet porttitor risus. Maecenas in hendrerit massa.",
-    },
-    {
-      question: "How does Artify work?",
-      answer:
-        "Duis estibulum at euismod lacus, eget efficitur ligula. Maecenas in nibh non nibh interdum mollis. Ut dui justo, vestibulum non sagittis ac, aliquet in tortor. Mattis mollis elit molestie euismod. Donec eu vestibulum enim. Morbi sed sollicitudin eros. Aenean eget venenatis orci, non consequat massa.",
-    },
-    {
-      question: "How do I contact support?",
-      answer:
-        "estibulum at euismod lacus, eget efficitur ligula. Maecenas in nibh non nibh interdum mollis. Ut dui justo, vestibulum non sagittis ac, aliquet in tortor. ",
-    },
-    {
-      question: "Is Artify free?",
-      answer:
-        "Aliquam porttitor egestas est, et semper ante dignissim non. In placerat gravida molestie. Fusce tortor libero, tempus vitae ipsum non, imperdiet porttitor risus. Maecenas in hendrerit massa.",
-    },
-  ];
-
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
@@ -80,10 +53,10 @@ export default function Faq() {
                   {expandedIndex === index ? "-" : "+"}
                 </Text>
               </View>
+              {expandedIndex === index && (
+                <Text style={styles.answer}>{faq.answer}</Text>
+              )}
             </TouchableOpacity>
-            {expandedIndex === index && (
-              <Text style={styles.answer}>{faq.answer}</Text>
-            )}
           </Surface>
         ))}
       </View>

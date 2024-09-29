@@ -1,8 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs/src/types";
-import { Dimensions } from "react-native";
-import MaskedView from "@react-native-masked-view/masked-view";
 import { useTheme } from "react-native-paper";
+import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function MyTabBar({
   state,
@@ -10,12 +10,11 @@ export default function MyTabBar({
   navigation,
 }: BottomTabBarProps) {
   const theme = useTheme();
-
+  const router = useRouter();
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
       backgroundColor: theme.colors.background,
-      // borderWidth: 1,
       borderColor: theme.colors.outline,
       borderTopStartRadius: 20,
       borderTopEndRadius: 20,
@@ -52,9 +51,12 @@ export default function MyTabBar({
       width: 70,
       height: 70,
       position: "absolute",
-      left: Dimensions.get("window").width / 2 - 40,
+      left: Dimensions.get("window").width / 2 - 35,
       bottom: 40,
       zIndex: 100,
+      padding: 0,
+      justifyContent: "center",
+      alignItems: "center",
     },
     leftMiddleTabButton: {
       marginRight: 30,
@@ -63,6 +65,8 @@ export default function MyTabBar({
       marginLeft: 30,
     },
   });
+
+  const middleElement = ~~(state.routes.length / 2);
 
   return (
     <View style={styles.container}>
@@ -90,10 +94,8 @@ export default function MyTabBar({
           });
         };
 
-        const middleElement = ~~(state.routes.length / 2);
-        const isMiddle = index === middleElement;
         const isLeftMiddle = index === middleElement - 1;
-        const isRightMiddle = index === middleElement + 1;
+        const isRightMiddle = index === middleElement;
 
         return (
           <TouchableOpacity
@@ -105,7 +107,6 @@ export default function MyTabBar({
             onLongPress={onLongPress}
             style={[
               styles.tabButton,
-              isMiddle && styles.middleTabButton,
               isLeftMiddle && styles.leftMiddleTabButton,
               isRightMiddle && styles.rightMiddleTabButton,
             ]}
@@ -114,18 +115,28 @@ export default function MyTabBar({
             {options.tabBarIcon &&
               options.tabBarIcon({
                 focused: isFocused,
-                color: isMiddle
-                  ? isFocused
-                    ? theme.colors.onPrimary
-                    : theme.colors.onPrimaryContainer
-                  : isFocused
-                    ? theme.colors.primary
-                    : theme.colors.onSurface,
-                size: isMiddle ? 50 : 40,
+                color: isFocused
+                  ? theme.colors.primary
+                  : theme.colors.onSurface,
+                size: 40,
               })}
           </TouchableOpacity>
         );
       })}
+
+      {/* Render the middle button separately */}
+      <TouchableOpacity
+        accessibilityRole="button"
+        onPress={() =>
+          router.push({
+            pathname: "/create/[style_photo]",
+            params: { style_photo: "undefined" },
+          })
+        }
+        style={styles.middleTabButton}
+      >
+        <Ionicons name="add" size={40} color={theme.colors.onPrimary} />
+      </TouchableOpacity>
     </View>
   );
 }

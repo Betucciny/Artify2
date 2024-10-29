@@ -23,12 +23,16 @@ type CarruselStylesProps = {
   images: Asset[];
   names: string[];
   onPress: (index: number) => void;
+  orientation?: "horizontal" | "vertical";
+  widthScale?: number;
 };
 
 export default function CarruselStyles({
   images,
   names,
   onPress,
+  orientation = "horizontal",
+  widthScale = 0.45,
 }: CarruselStylesProps) {
   const renderItem = ({ title, item, index, onPress }: Item) => {
     return (
@@ -43,6 +47,31 @@ export default function CarruselStyles({
     );
   };
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    itemContainer: {
+      width: width * widthScale,
+      height: 200,
+      marginHorizontal: orientation === "horizontal" ? 10 : 0,
+      marginVertical: orientation === "vertical" ? 10 : 0,
+      padding: 10,
+      borderRadius: 10,
+      justifyContent: "center",
+    },
+    image: {
+      width: "100%",
+      elevation: 5,
+      shadowColor: "black",
+      shadowOffset: { width: 0, height: 2 },
+      height: "80%",
+      borderRadius: 10,
+    },
+  });
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -51,7 +80,7 @@ export default function CarruselStyles({
           renderItem({ title: names[index], item, index, onPress })
         }
         keyExtractor={(item, index) => index.toString()}
-        horizontal
+        horizontal={orientation === "horizontal"}
         showsHorizontalScrollIndicator={false}
         pagingEnabled
         snapToAlignment="center"
@@ -60,27 +89,3 @@ export default function CarruselStyles({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  itemContainer: {
-    width: width * 0.45,
-    height: 200,
-    marginHorizontal: 10,
-    padding: 10,
-    borderRadius: 10,
-    justifyContent: "center",
-  },
-  image: {
-    width: "100%",
-    elevation: 5,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    height: "80%",
-    borderRadius: 10,
-  },
-});

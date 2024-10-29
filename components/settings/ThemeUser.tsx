@@ -47,6 +47,7 @@ export default function ThemeUser() {
       flexDirection: "row",
       justifyContent: "space-around",
       alignItems: "center",
+      paddingVertical: 10,
     },
     containerColumnThemes: {
       flexDirection: "column",

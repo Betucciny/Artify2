@@ -20,11 +20,10 @@ export default function Screen({ title, children }: ScreenProps) {
       justifyContent: "space-between",
       paddingRight: 20,
       alignItems: "center",
-      marginBottom: 10,
     },
     contentContainer: {
       flex: 1,
-      padding: 20,
+      paddingHorizontal: 20,
     },
     titleText: {
       marginTop: 10,

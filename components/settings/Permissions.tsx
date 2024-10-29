@@ -32,7 +32,7 @@ function SingularPermission({
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      paddingVertical: 5,
+      paddingVertical: 10,
     },
     icon: {
       marginRight: 16,

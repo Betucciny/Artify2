@@ -44,6 +44,7 @@ export default function InfoCardArt({ data, styleId }: InfoCardArtProps) {
     if (preferences.isCreateOnTheStack) {
       router.back();
       router.back();
+      router.back();
 
       setTimeout(() => {
         router.setParams({

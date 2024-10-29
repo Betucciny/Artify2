@@ -1,21 +1,22 @@
-import { useState, useEffect, useMemo } from "react";
-import { useAssets, Asset } from "expo-asset";
-import { data_styles, Style } from "@/constants/styles";
+import { useState, useMemo } from "react";
 import { ImageSourcePropType } from "react-native";
+import useDataAssets from "./useDataAssets";
+import { LoadedStyle } from "@/components/contexts/ImagesProvider";
+import { Asset } from "expo-asset";
 
 type ImageInfo = {
   name: string;
   imageIndex?: number;
-  imageSrc: ImageSourcePropType;
+  imageAsset: Asset;
 };
 
-const getStylesWithRandomImage = (styles: Style[]): ImageInfo[] => {
+const getStylesWithRandomImage = (styles: LoadedStyle[]): ImageInfo[] => {
   return styles.map((style) => {
     const randomImage =
       style.images[Math.floor(Math.random() * style.images.length)];
     return {
       name: style.name,
-      imageSrc: randomImage.src,
+      imageAsset: randomImage.src,
     };
   });
 };
@@ -26,13 +27,13 @@ const getRandomImages = (images: ImageInfo[], count: number): ImageInfo[] => {
 };
 
 export const useImageAssets = () => {
+  const { dataStyles, loading } = useDataAssets();
   const [allImagesDownloaded, setAllImagesDownloaded] = useState(false);
-
-  const allImages: ImageInfo[] = data_styles.flatMap((style, styleIndex) =>
+  const allImages: ImageInfo[] = dataStyles!.flatMap((style, styleIndex) =>
     style.images.map((image, imageIndex) => ({
       name: style.name,
       imageIndex,
-      imageSrc: image.src,
+      imageAsset: image.src,
     })),
   );
 
@@ -41,44 +42,14 @@ export const useImageAssets = () => {
     [],
   );
 
-  const [imageSources, error] = useAssets(
-    randomImages.map((image) => image.imageSrc as number),
-  );
-
   const stylesWithRandomImage = useMemo(
-    () => getStylesWithRandomImage(data_styles),
+    () => getStylesWithRandomImage(dataStyles!),
     [],
   );
-  const [styleImageSources, styleError] = useAssets(
-    stylesWithRandomImage.map((style) => style.imageSrc as number),
-  );
-
-  useEffect(() => {
-    function loadImages() {
-      if (imageSources && styleImageSources) {
-        const imagesDownloading = imageSources.map((image) =>
-          image.downloadAsync(),
-        );
-        const styleImagesDownloading = styleImageSources.map((image) =>
-          image.downloadAsync(),
-        );
-        Promise.all([...imagesDownloading, ...styleImagesDownloading]).then(
-          () => {
-            setAllImagesDownloaded(true);
-          },
-        );
-      }
-    }
-    loadImages();
-  }, [imageSources, styleImageSources]);
 
   return {
-    allImagesDownloaded,
-    imageSources,
-    styleImageSources,
+    dataStyles,
     randomImages,
     stylesWithRandomImage,
-    error,
-    styleError,
   };
 };

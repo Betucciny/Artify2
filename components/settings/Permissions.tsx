@@ -14,7 +14,7 @@ type SingularPermissionProps = {
   icon: string;
   title: string;
   status: boolean;
-  setIsSwitchOn: Dispatch<SetStateAction<boolean>>;
+  setIsSwitchOn: (value: boolean) => void;
   divider?: boolean;
 };
 

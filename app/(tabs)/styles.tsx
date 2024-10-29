@@ -3,20 +3,14 @@ import { useRouter } from "expo-router";
 import CarruselStyles from "@/components/images/CarruselStyles";
 import PhotoGallery from "@/components/images/PhotoGallery";
 import Spacer from "@/components/Spacer";
-import { ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator, Divider } from "react-native-paper";
 import { Asset } from "expo-asset";
 import { useImageAssets } from "@/hooks/useImageAssets";
 import { StyleSheet, View } from "react-native";
 
 export default function Styles() {
   const router = useRouter();
-  const {
-    allImagesDownloaded,
-    imageSources,
-    styleImageSources,
-    randomImages,
-    stylesWithRandomImage,
-  } = useImageAssets();
+  const { dataStyles, randomImages, stylesWithRandomImage } = useImageAssets();
 
   function handlePressPhoto(index: number) {
     const selectedImage = randomImages[index];
@@ -52,24 +46,18 @@ export default function Styles() {
 
   return (
     <Screen title="Styles">
-      {allImagesDownloaded ? (
-        <>
-          <CarruselStyles
-            images={styleImageSources as Asset[]}
-            names={stylesWithRandomImage.map((style) => style.name)}
-            onPress={handlePressStyle}
-          />
-          <Spacer margin={20} />
-          <PhotoGallery
-            photos={imageSources as Asset[]}
-            onPress={handlePressPhoto}
-          />
-        </>
-      ) : (
-        <View style={styles.container}>
-          <ActivityIndicator animating={true} size="large" />
-        </View>
-      )}
+      <CarruselStyles
+        images={stylesWithRandomImage.map((style) => style.imageAsset)}
+        names={stylesWithRandomImage.map((style) => style.name)}
+        onPress={handlePressStyle}
+      />
+      <Spacer margin={10} />
+      <Divider />
+      <Spacer margin={10} />
+      <PhotoGallery
+        photos={randomImages.map((image) => image.imageAsset)}
+        onPress={handlePressPhoto}
+      />
       <Spacer margin={50} />
     </Screen>
   );

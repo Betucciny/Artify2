@@ -7,6 +7,7 @@ import { useEffect, useState, Context } from "react";
 import { PaperProvider } from "react-native-paper";
 import { PreferencesProvider } from "@/components/contexts/PreferencesProvider";
 import { usePreferences } from "@/hooks/usePreferences";
+import ImageProvider from "@/components/contexts/ImagesProvider";
 
 export default function Root() {
   const systemColorScheme = useColorScheme();
@@ -25,9 +26,11 @@ export default function Root() {
   }
 
   return (
-    <PreferencesProvider>
-      <AppContent systemColorScheme={systemColorScheme} />
-    </PreferencesProvider>
+    <ImageProvider>
+      <PreferencesProvider>
+        <AppContent systemColorScheme={systemColorScheme} />
+      </PreferencesProvider>
+    </ImageProvider>
   );
 }
 
@@ -36,7 +39,13 @@ const AppContent = ({
 }: {
   systemColorScheme: ColorSchemeName;
 }) => {
-  const { preferences } = usePreferences();
+  const { preferences, askMediaPermission, askCameraPermission } =
+    usePreferences();
+
+  useEffect(() => {
+    askMediaPermission();
+    askCameraPermission();
+  }, []);
 
   const colorScheme =
     preferences.colorScheme === "system"

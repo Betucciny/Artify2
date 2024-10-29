@@ -1,19 +1,70 @@
-import { StyleSheet, View, Dimensions } from "react-native";
-import { Divider, useTheme, Button } from "react-native-paper";
-import { Text } from "react-native-paper";
-import { ImageInfo } from "@/constants/styles";
-import { useRouter } from "expo-router";
+import React, { useRef, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Animated,
+  PanResponder,
+} from "react-native";
+import { useTheme, Button, Text } from "react-native-paper";
+import Spacer from "../Spacer";
 
 const windowHeight = Dimensions.get("window").height;
 
 type InfoCardProps = {
-  data: ImageInfo;
-  stylePhoto: string;
+  onPress?: () => void;
+  buttonTitle?: string;
+  children: React.ReactNode;
 };
 
-export default function InfoCard({ data, stylePhoto }: InfoCardProps) {
+export default function InfoCard({
+  children,
+  onPress,
+  buttonTitle,
+}: InfoCardProps) {
   const { colors } = useTheme();
-  const router = useRouter();
+  const [height, setHeight] = useState(windowHeight * 0.5);
+  const maxHeight = windowHeight * 0.5;
+  const initialTranslateY = height * 0.7 - 100;
+  const finalTranslateY = height * 0;
+  const translateY = useRef(new Animated.Value(initialTranslateY)).current; // Start with the card partially hidden
+
+  const collapsedScale = 0.9; // Scale when the card is collapsed
+  const expandedScale = 1.0; // Scale when the card is expanded
+
+  const scale = translateY.interpolate({
+    inputRange: [finalTranslateY, initialTranslateY],
+    outputRange: [expandedScale, collapsedScale],
+    extrapolate: "clamp",
+  });
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: (_, gestureState) => {
+        return Math.abs(gestureState.dy) > 10;
+      },
+      onPanResponderMove: (_, gestureState) => {
+        const newTranslateY = initialTranslateY + gestureState.dy;
+        if (newTranslateY >= finalTranslateY) {
+          translateY.setValue(newTranslateY);
+        }
+      },
+      onPanResponderRelease: (_, gestureState) => {
+        if (gestureState.dy > 0) {
+          Animated.spring(translateY, {
+            toValue: initialTranslateY,
+            useNativeDriver: true,
+          }).start();
+        } else {
+          Animated.spring(translateY, {
+            toValue: finalTranslateY,
+            useNativeDriver: true,
+          }).start();
+        }
+      },
+    }),
+  ).current;
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -22,11 +73,12 @@ export default function InfoCard({ data, stylePhoto }: InfoCardProps) {
       bottom: 0,
       left: 0,
       right: 0,
-      height: windowHeight * 0.4,
+      maxHeight: maxHeight,
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
       alignItems: "center",
       justifyContent: "space-around",
+      transform: [{ translateY }, { scale }],
     },
     titleContainer: {
       position: "relative",
@@ -38,74 +90,32 @@ export default function InfoCard({ data, stylePhoto }: InfoCardProps) {
       backgroundColor: colors.primary,
       borderRadius: 15,
     },
-    mainContainer: {
-      flex: 1,
-      justifyContent: "space-between",
-      alignItems: "stretch",
-      padding: 20,
-    },
     title: {
       color: colors.onPrimary,
       textAlign: "center",
       marginBottom: 5,
     },
-    name: {
-      textAlign: "center",
-      marginBottom: 5,
-    },
-    text: {
-      textAlign: "left",
-    },
-    contentContainer: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "stretch",
-      padding: 20,
-      marginBottom: 20,
-    },
-    textContainer: {
-      alignItems: "stretch",
-      paddingVertical: 10,
-    },
   });
 
   return (
-    <View style={styles.container}>
+    <Animated.View
+      style={styles.container}
+      {...panResponder.panHandlers}
+      onLayout={(event) =>
+        setHeight(Math.max(event.nativeEvent.layout.height, maxHeight))
+      }
+    >
       <View style={styles.titleContainer}>
         <Text variant="titleLarge" style={styles.title}>
           Info
         </Text>
       </View>
-      <View style={styles.mainContainer}>
-        <View>
-          <Text variant="headlineLarge" style={styles.name}>
-            {data.title}
-          </Text>
-        </View>
-        <View style={styles.contentContainer}>
-          <View style={styles.textContainer}>
-            <Text variant="titleMedium" style={styles.text}>
-              Artist
-            </Text>
-            <Text style={styles.text}>{data.author}</Text>
-          </View>
-          <Divider />
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>{data.description}</Text>
-          </View>
-          <Button
-            mode="elevated"
-            onPress={() => {
-              router.push({
-                pathname: "/create/[style_photo]",
-                params: { style_photo: stylePhoto },
-              });
-            }}
-          >
-            Create New Image
-          </Button>
-        </View>
-      </View>
-    </View>
+      {children}
+      {!!onPress && !!buttonTitle && (
+        <Button mode="elevated" onPress={onPress}>
+          {buttonTitle}
+        </Button>
+      )}
+    </Animated.View>
   );
 }

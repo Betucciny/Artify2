@@ -17,7 +17,8 @@ export default function Screen({ title, children }: ScreenProps) {
     },
     topBar: {
       flexDirection: "row",
-      justifyContent: "flex-start",
+      justifyContent: "space-between",
+      paddingRight: 20,
       alignItems: "center",
       marginBottom: 10,
     },
@@ -26,6 +27,7 @@ export default function Screen({ title, children }: ScreenProps) {
       padding: 20,
     },
     titleText: {
+      marginTop: 10,
       marginBottom: 16,
       marginLeft: 10,
     },
@@ -42,13 +44,16 @@ export default function Screen({ title, children }: ScreenProps) {
             router.back();
           }}
         />
-      </View>
-      <ScrollView style={styles.contentContainer}>
-        <Text variant="headlineLarge" style={styles.titleText}>
+        <Text
+          variant="headlineLarge"
+          style={styles.titleText}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
           {title}
         </Text>
-        {children}
-      </ScrollView>
+      </View>
+      <ScrollView style={styles.contentContainer}>{children}</ScrollView>
     </View>
   );
 }

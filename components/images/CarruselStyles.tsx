@@ -6,7 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { Text } from "react-native-paper";
+import { Surface, Text } from "react-native-paper";
 import { Image } from "expo-image";
 import { Asset } from "expo-asset";
 
@@ -33,10 +33,12 @@ export default function CarruselStyles({
   const renderItem = ({ title, item, index, onPress }: Item) => {
     return (
       <TouchableOpacity onPress={() => onPress(index)}>
-        <View style={styles.itemContainer}>
+        <Surface style={styles.itemContainer}>
           <Image source={item.localUri} style={styles.image} />
-          <Text style={styles.title}>{title}</Text>
-        </View>
+          <Text variant="headlineSmall" numberOfLines={1} ellipsizeMode="tail">
+            {title}
+          </Text>
+        </Surface>
       </TouchableOpacity>
     );
   };
@@ -66,9 +68,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   itemContainer: {
-    width: width * 0.25,
-    height: 100,
+    width: width * 0.45,
+    height: 200,
     marginHorizontal: 10,
+    padding: 10,
+    borderRadius: 10,
     justifyContent: "center",
   },
   image: {
@@ -78,10 +82,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     height: "80%",
     borderRadius: 10,
-  },
-  title: {
-    marginTop: 5,
-    fontSize: 16,
-    textAlign: "left",
   },
 });

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Screen from "@/components/Screen";
 import Permissions from "@/components/settings/Permissions";
 import Section, { ItemProps } from "@/components/settings/Section";
 import ThemeUser from "@/components/settings/ThemeUser";
 import Spacer from "@/components/Spacer";
+import { usePreferences } from "@/hooks/usePreferences";
+import { Alert } from "react-native";
 
 const itemsAbout: ItemProps[] = [
   {
@@ -28,20 +30,67 @@ const itemsSupport: ItemProps[] = [
 ];
 
 export default function Settings() {
-  const [cameraStatus, setCameraStatus] = useState(false);
-  const [galleryStatus, setGalleryStatus] = useState(false);
+  const {
+    preferences,
+    askCameraPermission,
+    openAppSettings,
+    askMediaPermission,
+  } = usePreferences();
+
+  async function handleCameraPermission(value: boolean) {
+    if (value) {
+      askCameraPermission();
+    } else {
+      Alert.alert(
+        "Camera Permission",
+        "You can disable camera permission in the app settings",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Open Settings",
+            onPress: openAppSettings,
+          },
+        ],
+      );
+    }
+  }
+
+  async function handleGalleryPermission(value: boolean) {
+    if (value) {
+      askMediaPermission();
+    } else {
+      Alert.alert(
+        "Gallery Permission",
+        "You can disable gallery permission in the app settings",
+        [
+          {
+            text: "Cancel",
+            style: "cancel",
+          },
+          {
+            text: "Open Settings",
+            onPress: openAppSettings,
+          },
+        ],
+      );
+    }
+  }
+
   const permissions = [
     {
       icon: "camera",
       title: "Camera",
-      status: cameraStatus,
-      setIsSwitchOn: setCameraStatus,
+      status: !!preferences.permissions.camera?.granted,
+      setIsSwitchOn: handleCameraPermission,
     },
     {
       icon: "file-image-outline",
       title: "Gallery",
-      status: galleryStatus,
-      setIsSwitchOn: setGalleryStatus,
+      status: !!preferences.permissions.gallery?.granted,
+      setIsSwitchOn: handleGalleryPermission,
     },
   ];
 

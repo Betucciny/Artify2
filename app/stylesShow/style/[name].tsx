@@ -1,23 +1,24 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { StyleSheet, View } from "react-native";
-import { Surface, Text } from "react-native-paper";
-import Screen from "@/components/Screen";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { data_styles } from "@/constants/styles";
-import { useAssets } from "expo-asset";
-import { useEffect } from "react";
-import PhotoGallery from "@/components/images/PhotoGallery";
+import useDataAssets from "@/hooks/useDataAssets";
+import BackButton from "@/components/BackButton";
+import InfoCardStyle from "@/components/images/InfoCardStyle";
+import CarruselArt from "@/components/images/CarruselArt";
 
 export default function Style() {
   const { name } = useLocalSearchParams();
+  const { dataStyles } = useDataAssets();
+
   const router = useRouter();
 
-  if (!name || name === "" || typeof name !== "string") {
+  if (!name || name === "" || typeof name !== "string" || !dataStyles) {
     router.back();
     return null;
   }
 
-  const styleData = data_styles.find((style) => style.name === name);
+  const styleData = dataStyles.find((style) => style.name === name);
 
   if (!styleData) {
     router.back();
@@ -29,20 +30,14 @@ export default function Style() {
       flex: 1,
       padding: 10,
     },
-    surface: {
-      padding: 10,
-      margin: 10,
-      borderRadius: 10,
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: "bold",
+    backgroundImage: {
+      resizeMode: "cover",
+      height: "100%",
+      width: "100%",
     },
   });
 
-  const [assetsImages, error] = useAssets(
-    styleData.images.map((image) => image.src as number),
-  );
+  const assetsImages = styleData.images.map((image) => image.src);
 
   function handlePressPhoto(index: number) {
     const params = {
@@ -55,19 +50,11 @@ export default function Style() {
   }
 
   return (
-    <Screen title={name}>
+    <View style={styles.container}>
+      <BackButton />
       <Stack.Screen options={{ headerShown: false }} />
-      <View>
-        <Surface style={styles.surface}>
-          <Text variant="titleLarge" style={styles.title}>
-            Description:
-          </Text>
-          <Text variant="bodyMedium">{styleData.description}</Text>
-        </Surface>
-        {assetsImages && (
-          <PhotoGallery photos={assetsImages} onPress={handlePressPhoto} />
-        )}
-      </View>
-    </Screen>
+      <CarruselArt data={styleData} />
+      <InfoCardStyle data={styleData} />
+    </View>
   );
 }

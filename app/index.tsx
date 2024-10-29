@@ -1,9 +1,11 @@
+import useDataAssets from "@/hooks/useDataAssets";
 import { router } from "expo-router";
 import { View, StyleSheet, Text } from "react-native";
-import { Button, useTheme } from "react-native-paper";
+import { ActivityIndicator, Button, useTheme } from "react-native-paper";
 
 export default function App() {
   const theme = useTheme();
+  const { loading } = useDataAssets();
   const styles = StyleSheet.create({
     container_global: {
       flex: 1,
@@ -52,9 +54,13 @@ export default function App() {
         <Text style={styles.description_text}>Apply Artistic Styles</Text>
       </View>
       <View style={styles.sub_container}>
-        <Button onPress={controlOnPress}>
-          <Text>Get Started</Text>
-        </Button>
+        {loading ? (
+          <ActivityIndicator size={"large"} />
+        ) : (
+          <Button onPress={controlOnPress}>
+            <Text>Get Started</Text>
+          </Button>
+        )}
       </View>
     </View>
   );

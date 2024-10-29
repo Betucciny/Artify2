@@ -3,12 +3,15 @@ import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useLayoutEffect } from "react";
 import { View } from "react-native";
 import { Button, Text } from "react-native-paper";
+import useAI from "@/hooks/useAI";
 
 export default function Create() {
   const { style_photo } = useLocalSearchParams();
   const router = useRouter();
-
   const { setIsCreateOnTheStack } = usePreferences();
+
+  const { setStyleImage, setContentImage, resultImage, createStyleImage } =
+    useAI();
 
   useEffect(() => {
     setIsCreateOnTheStack(true);

@@ -26,6 +26,7 @@ export default function Screen({ title, children }: ScreenProps) {
       paddingHorizontal: 20,
     },
     titleText: {
+      fontFamily: "AbhayaLibre",
       marginTop: 10,
       marginBottom: 16,
       marginLeft: 10,

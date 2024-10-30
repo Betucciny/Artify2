@@ -1,0 +1,23 @@
+diff --git a/node_modules/jpeg-js/index.d.ts b/node_modules/jpeg-js/index.d.ts
+index adbdd4b..07a17f5 100644
+--- a/node_modules/jpeg-js/index.d.ts
++++ b/node_modules/jpeg-js/index.d.ts
+@@ -1,3 +1,5 @@
++import { Buffer } from 'buffer';
++
+ export interface RawImageData<T> {
+   width: number;
+   height: number;
+diff --git a/node_modules/jpeg-js/lib/encoder.js b/node_modules/jpeg-js/lib/encoder.js
+index fdbc184..211ab21 100644
+--- a/node_modules/jpeg-js/lib/encoder.js
++++ b/node_modules/jpeg-js/lib/encoder.js
+@@ -34,6 +34,8 @@ JPEG encoder ported to JavaScript and optimized by Andreas Ritter, www.bytestrom
+ 
+ Basic GUI blocking jpeg encoder
+ */
++import {Buffer} from 'buffer';
++
+ 
+ var btoa = btoa || function(buf) {
+   return Buffer.from(buf).toString('base64');

@@ -110,12 +110,12 @@ export default function InfoCard({
           Info
         </Text>
       </View>
-      {children}
       {!!onPress && !!buttonTitle && (
         <Button mode="elevated" onPress={onPress}>
           {buttonTitle}
         </Button>
       )}
+      {children}
     </Animated.View>
   );
 }

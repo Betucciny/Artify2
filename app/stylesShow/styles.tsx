@@ -3,12 +3,13 @@ import { useImageAssets } from "@/hooks/useImageAssets";
 import { StyleSheet, View } from "react-native";
 import Screen from "@/components/Screen";
 import CarruselStyles from "@/components/images/CarruselStyles";
-import { Text } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import BackButton from "@/components/BackButton";
 
 export default function Styles() {
   const router = useRouter();
-  const { dataStyles, randomImages, stylesWithRandomImage } = useImageAssets();
+  const { colors } = useTheme();
+  const { randomImages, stylesWithRandomImage } = useImageAssets();
 
   function handlePressPhoto(index: number) {
     const selectedImage = randomImages[index];
@@ -39,6 +40,7 @@ export default function Styles() {
       alignItems: "center",
       width: "100%",
       height: "100%",
+      backgroundColor: colors.background,
     },
   });
 

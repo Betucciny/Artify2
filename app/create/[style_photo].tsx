@@ -2,19 +2,30 @@ import { usePreferences } from "@/hooks/usePreferences";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, FAB, Surface } from "react-native-paper";
+import {
+  Text,
+  FAB,
+  Surface,
+  useTheme,
+  Portal,
+  Modal,
+  ActivityIndicator,
+} from "react-native-paper";
 import useAI from "@/hooks/useAI";
 import Screen from "@/components/Screen";
 import { Image } from "expo-image";
 import useDataAssets from "@/hooks/useDataAssets";
+import ResultScreen from "@/components/create/ResultScreen";
 
 export default function Create() {
   const { style_photo } = useLocalSearchParams();
   const router = useRouter();
+  const { colors } = useTheme();
   const { setIsCreateOnTheStack } = usePreferences();
   const stylePhoto = style_photo as string;
 
   const {
+    loading,
     setStyleImage,
     styleImage,
     contentImage,
@@ -50,17 +61,35 @@ export default function Create() {
     return () => setIsCreateOnTheStack(false);
   }, []);
 
+  if (resultImage) {
+    return <ResultScreen result={resultImage} />;
+  }
+
   return (
     <>
+      <Portal>
+        <Modal
+          visible={loading != null}
+          contentContainerStyle={styles.container}
+        >
+          <ActivityIndicator animating={true} size="large" />
+        </Modal>
+      </Portal>
       <Screen title="Create">
         <Stack.Screen options={{ headerShown: false }} />
         <View style={styles.container}>
           <Surface style={styles.surfaceText}>
             <Text variant="titleMedium">Style</Text>
           </Surface>
-          <View style={styles.imageContainer}>
-            {styleImage && (
+          <View
+            style={[styles.imageContainer, { backgroundColor: colors.surface }]}
+          >
+            {!!styleImage ? (
               <Image source={{ uri: styleImage?.uri }} style={styles.image} />
+            ) : (
+              <Text variant="labelMedium" style={{ color: colors.onSurface }}>
+                Choose a style image
+              </Text>
             )}
           </View>
           <View style={styles.buttonContainer}>
@@ -90,9 +119,15 @@ export default function Create() {
           <Surface style={styles.surfaceText}>
             <Text variant="titleMedium">Content</Text>
           </Surface>
-          <View style={styles.imageContainer}>
-            {contentImage && (
+          <View
+            style={[styles.imageContainer, { backgroundColor: colors.surface }]}
+          >
+            {!!contentImage ? (
               <Image source={{ uri: contentImage?.uri }} style={styles.image} />
+            ) : (
+              <Text variant="labelMedium" style={{ color: colors.onSurface }}>
+                Choose a content image
+              </Text>
             )}
           </View>
           <View style={styles.buttonContainer}>
@@ -149,7 +184,8 @@ const styles = StyleSheet.create({
     width: "90%",
     aspectRatio: 1,
     borderRadius: 10,
-    backgroundColor: "#f0f0f0",
+    justifyContent: "center",
+    alignItems: "center",
     margin: 5,
   },
   image: {

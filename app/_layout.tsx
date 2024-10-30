@@ -13,6 +13,7 @@ export default function Root() {
   const systemColorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    AbhayaLibre: require("../assets/fonts/AbhayaLibre-Regular.ttf"),
   });
 
   useEffect(() => {

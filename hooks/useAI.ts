@@ -140,7 +140,9 @@ export default function useAI() {
     await FileSystem.writeAsStringAsync(uri, imgBase64, {
       encoding: FileSystem.EncodingType.Base64,
     });
-    return Asset.fromURI(uri);
+    const asset = Asset.fromURI(uri);
+    await asset.downloadAsync();
+    return asset;
   }
 
   async function createStyleImage() {

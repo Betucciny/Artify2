@@ -2,27 +2,27 @@ export const faqs = [
   {
     question: "What is Artify?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec ligula in velit maximus tincidunt in gravida augue. Suspendisse potenti. Aenean faucibus felis ut arcu interdum, eu vestibulum sapien porta. Aliquam ligula augue, viverra id tincidunt id, dictum eu lorem. Proin volutpat mi orci, sed blandit eros pellentesque nec.",
+      "Artify is a platform that allows users to apply artistic filters to their images using advanced AI algorithms. With a range of styles inspired by art movements like Baroque and Renaissance, Artify provides a unique way to transform your photos into pieces of art."
   },
   {
     question: "How do I upload my art?",
     answer:
-      "Aliquam porttitor egestas est, et semper ante dignissim non. In placerat gravida molestie. Fusce tortor libero, tempus vitae ipsum non, imperdiet porttitor risus. Maecenas in hendrerit massa.",
+      "To upload your art, simply navigate to the upload section in the app, select the image file you want to transform, and upload it. Our app will guide you through the next steps to apply your desired artistic style."
   },
   {
     question: "How does Artify work?",
     answer:
-      "Duis estibulum at euismod lacus, eget efficitur ligula. Maecenas in nibh non nibh interdum mollis. Ut dui justo, vestibulum non sagittis ac, aliquet in tortor. Mattis mollis elit molestie euismod. Donec eu vestibulum enim. Morbi sed sollicitudin eros. Aenean eget venenatis orci, non consequat massa.",
+      "Artify uses AI algorithms that analyze your uploaded images and apply artistic filters to replicate various art styles. This process happens on secure servers to ensure privacy and quality. Results are typically delivered in a few seconds, giving you a unique, stylized version of your image."
   },
   {
     question: "How do I contact support?",
     answer:
-      "estibulum at euismod lacus, eget efficitur ligula. Maecenas in nibh non nibh interdum mollis. Ut dui justo, vestibulum non sagittis ac, aliquet in tortor. ",
+      "If you need assistance, our support team is available to help. You can reach out to us at support@yourapp.com for any questions or technical issues."
   },
   {
     question: "Is Artify free?",
     answer:
-      "Aliquam porttitor egestas est, et semper ante dignissim non. In placerat gravida molestie. Fusce tortor libero, tempus vitae ipsum non, imperdiet porttitor risus. Maecenas in hendrerit massa.",
+      "Yes! Artify is free."
   },
 ];
 

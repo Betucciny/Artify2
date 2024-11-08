@@ -1,11 +1,9 @@
-import useDataAssets from "@/hooks/useDataAssets";
 import { router } from "expo-router";
-import { View, StyleSheet, Text } from "react-native";
-import { ActivityIndicator, Button, useTheme } from "react-native-paper";
+import { View, StyleSheet, Text, Image} from "react-native";
+import { Button, useTheme } from "react-native-paper";
 
 export default function App() {
   const theme = useTheme();
-  const { loading } = useDataAssets();
   const styles = StyleSheet.create({
     container_global: {
       flex: 1,
@@ -25,7 +23,7 @@ export default function App() {
     },
     description_text: {
       color: theme.colors.onBackground,
-      fontSize: 25,
+      fontSize: 20,
       fontWeight: "normal",
     },
     logo_image: {
@@ -38,6 +36,11 @@ export default function App() {
       padding: 20,
       backgroundColor: "green",
     },
+    image: {
+      width: 250,
+      height: 250,
+      resizeMode: 'contain',
+    },
   });
 
   const controlOnPress = () => {
@@ -47,21 +50,20 @@ export default function App() {
   return (
     <View style={styles.container_global}>
       <View style={styles.sub_container}>
-        <Text>Image</Text>
-      </View>
-      <View style={styles.sub_container}>
-        <Text style={styles.title_text}>Artify</Text>
+        <Image
+          source={require('../assets/images/logo1.png')}
+          style={styles.image}
+        />
         <Text style={styles.description_text}>Apply Artistic Styles</Text>
       </View>
       <View style={styles.sub_container}>
-        {loading ? (
-          <ActivityIndicator size={"large"} />
-        ) : (
-          <Button onPress={controlOnPress}>
-            <Text>Get Started</Text>
-          </Button>
-        )}
+        <Button
+          mode="contained"
+          onPress={controlOnPress}
+        >
+          Get Started
+        </Button>
       </View>
     </View>
   );
-}
+};

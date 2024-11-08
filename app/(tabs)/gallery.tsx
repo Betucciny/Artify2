@@ -29,14 +29,20 @@ export default function Gallery() {
       }
       const pagedInfo = await MediaLibrary.getAssetsAsync({ album: almbum });
       const assets = pagedInfo.assets.map((asset) => Asset.fromURI(asset.uri));
-      const allDownloaded = await Promise.all(
-        assets.map((asset) => asset.downloadAsync()),
-      );
-      setImageAssets(allDownloaded);
+      try{
+        await Promise.all(
+          assets.map((asset) => asset.downloadAsync()),
+        )
+      } catch (error) {
+        console.log("Failed to download images:", error);
+      }
+
+      setImageAssets(assets);
       setLoading(false);
     }
     getImages();
-  }, [isFocused]);
+
+  }, [isFocused, setImageAssets, setLoading]);
 
   const styles = StyleSheet.create({
     container: {

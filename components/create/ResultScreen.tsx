@@ -1,11 +1,12 @@
 import { Asset } from "expo-asset";
-import { View, StyleSheet } from "react-native";
-import { useTheme, Button } from "react-native-paper";
+import { View, StyleSheet, Text } from "react-native";
+import { useTheme, Button, Dialog, Portal } from "react-native-paper";
 import { Image } from "expo-image";
 import Screen from "../Screen";
 import { Dimensions } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 
 type ResultScreenProps = {
   result: Asset;
@@ -15,22 +16,19 @@ const height = Dimensions.get("window").height;
 
 export default function ResultScreen({ result }: ResultScreenProps) {
   const router = useRouter();
+  const [dialogVisible, setDialogVisible] = useState(false);
+  const [confirmSave, setConfirmSave] = useState(false);
 
   const imageUri = result.localUri ? result.localUri : result.uri;
 
   async function saveImage() {
     try {
-      const almbum = await MediaLibrary.getAlbumAsync("Artify");
+      const album = await MediaLibrary.getAlbumAsync("Artify");
       const asset = await MediaLibrary.createAssetAsync(imageUri);
-      if (!almbum) {
+      if (!album) {
         await MediaLibrary.createAlbumAsync("Artify", asset);
       } else {
-        const success = await MediaLibrary.addAssetsToAlbumAsync(
-          [asset],
-          almbum.id,
-          false,
-        );
-        console.log(success);
+        await MediaLibrary.addAssetsToAlbumAsync([asset], album.id, false);
       }
       router.back();
     } catch (error) {
@@ -42,9 +40,15 @@ export default function ResultScreen({ result }: ResultScreenProps) {
     router.back();
   }
 
+  const showDialog = () => setDialogVisible(true);
+  const hideDialog = () => setDialogVisible(false);
+
   return (
     <Screen title="Result">
       <View style={styles.container}>
+        <View style={styles.messageContainer}>
+          <Text style={styles.readyText}>Styled and ready to shine!</Text>
+        </View>
         <View style={styles.imageContainer}>
           <Image source={{ uri: imageUri }} style={styles.image} />
         </View>
@@ -52,10 +56,25 @@ export default function ResultScreen({ result }: ResultScreenProps) {
           <Button mode="contained" onPress={saveImage}>
             Save
           </Button>
-          <Button mode="contained" onPress={discardImage}>
+          <Button mode="contained" onPress={showDialog}>
             Discard
           </Button>
         </View>
+        <Portal>
+          <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+            <Dialog.Title>Confirm Discard</Dialog.Title>
+            <Dialog.Content>
+              <Text>Are you sure you want to discard this image?</Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={hideDialog}>Cancel</Button>
+              <Button onPress={() => {
+                hideDialog();
+                discardImage();
+              }}>Yes</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
       </View>
     </Screen>
   );
@@ -80,15 +99,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  textContainer: {
-    position: "relative",
-    top: 20,
-    zIndex: 1,
-    alignContent: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+  messageContainer: {
+    marginVertical: 10,
+  },
+  readyText: {
+    fontSize: 16,
+    margin: 10,
+    color: "gray",
+    textAlign: "center",
   },
   buttonContainer: {
     width: "100%",

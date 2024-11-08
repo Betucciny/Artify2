@@ -25,7 +25,7 @@ export default function InfoCard({
   const { colors } = useTheme();
   const [height, setHeight] = useState(windowHeight * 0.5);
   const maxHeight = windowHeight * 0.5;
-  const initialTranslateY = height * 0.7 - 100;
+  const initialTranslateY = height * 0.5 -50;
   const finalTranslateY = height * 0;
   const translateY = useRef(new Animated.Value(initialTranslateY)).current; // Start with the card partially hidden
 

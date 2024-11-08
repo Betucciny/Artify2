@@ -21,7 +21,7 @@ function Photo({ item, i, onPress }: PhotoProps) {
   useEffect(() => {
     const fetchAspectRatio = async () => {
       try {
-        if (!item.downloaded) throw new Error("Image not downloaded");
+        // if (!item.downloaded) throw new Error("Image not downloaded");
         const { width, height } = item;
         const aspectRatio = width && height ? width / height : 1;
         setAspectRatio(aspectRatio);
@@ -40,7 +40,6 @@ function Photo({ item, i, onPress }: PhotoProps) {
     },
     image: {
       width: "100%",
-      height: undefined,
       aspectRatio: aspectRatio,
       borderRadius: 8,
     },
@@ -54,7 +53,7 @@ function Photo({ item, i, onPress }: PhotoProps) {
       }}
       style={styles.imageContainer}
     >
-      <Image source={item.localUri} style={styles.image} />
+      <Image source={item.uri} style={styles.image} />
     </TouchableOpacity>
   );
 }

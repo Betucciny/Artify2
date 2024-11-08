@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Image } from "react-native";
 import { IconButton, Text, useTheme } from "react-native-paper";
 import { router } from "expo-router";
 
@@ -43,6 +43,10 @@ export default function Screen({ title, children }: ScreenProps) {
           onPress={() => {
             router.back();
           }}
+        />
+        <Image
+          source={require('/Users/karinajoannaxochipamendoza/Documents/GitHub/Artify2/assets/images/logo3.png')}
+          style={{ width: 40, height: 40 }}
         />
         <Text
           variant="headlineLarge"

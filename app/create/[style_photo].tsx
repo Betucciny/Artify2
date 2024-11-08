@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: "90%",
+    zIndex: -1,
     aspectRatio: 1,
     borderRadius: 10,
     justifyContent: "center",

@@ -1,21 +1,23 @@
 import Screen from "@/components/Screen";
-import { View, StyleSheet, Image} from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Card, Text } from "react-native-paper";
+import { Surface, Text } from "react-native-paper";
+import { CardProps, cardData } from "@/constants/extras";
+import { useTheme } from "react-native-paper";
 
 const styles = StyleSheet.create({
   title_text: {
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     margin: 10,
   },
   subtitle_text: {
-    fontWeight: 'bold',
-    textAlign: 'left',
+    fontWeight: "bold",
+    textAlign: "left",
     margin: 10,
   },
   description_text: {
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10,
   },
 
@@ -36,65 +38,53 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   last_description_text: {
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10,
     marginBottom: 150,
   },
 });
 
+function Card({ icon, title, description }: CardProps) {
+  const { colors } = useTheme();
+  return (
+    <Surface style={styles.card}>
+      <Ionicons
+        name={icon}
+        size={40}
+        style={styles.icon}
+        color={colors.onSurface}
+      />
+      <View style={styles.textContainer}>
+        <Text style={styles.subtitle_text}>{title}</Text>
+        <Text style={styles.description_text}>{description}</Text>
+      </View>
+    </Surface>
+  );
+}
+
 export default function Home() {
   return (
     <Screen title="Artify">
-      <Text variant="titleLarge" style={styles.title_text}>Welcome to Artify!</Text>
+      <Text variant="titleLarge" style={styles.title_text}>
+        Welcome to Artify!
+      </Text>
       <Image
-          source={require('/Users/karinajoannaxochipamendoza/Documents/GitHub/Artify2/assets/images/logo3.png')}
-          style={{width: 100, height: 100, alignSelf: 'center'}}
-        />
+        source={require("../../assets/images/logo3.png")}
+        style={{ width: 100, height: 100, alignSelf: "center" }}
+      />
       <Text variant="bodyMedium" style={styles.description_text}>
-        Artify is a creative platform where you can transform your photos with artistic filters powered by advanced AI. Discover new ways to express your creativity!
+        Artify is a creative platform where you can transform your photos with
+        artistic filters powered by advanced AI. Discover new ways to express
+        your creativity!
       </Text>
 
-      <View style={styles.card}>
-      <Ionicons name="color-palette" size={40} style={styles.icon} />
-        <View style={styles.textContainer}>
-          <Text style={styles.subtitle_text}>1. Select an Art Style</Text>
-          <Text style={styles.description_text}>
-            Browse our gallery of stunning art styles and pick one that inspires you.
-          </Text>
-        </View>
-      </View>
-
-      <Card style={styles.card}>
-      <Ionicons name="cloud-upload" size={40} style={styles.icon} />
-        <View style={styles.textContainer}>
-          <Text style={styles.subtitle_text}>2. Upload Your Image</Text>
-          <Text style={styles.description_text}>
-            Choose a photo from your gallery or snap a new one to give it an artistic touch.
-          </Text>
-        </View>
-      </Card>
-
-      <View style={styles.card}>
-      <Ionicons name="images" size={40} style={styles.icon} />
-        <View style={styles.textContainer}>
-          <Text style={styles.subtitle_text}>3. Save & View in Your Gallery</Text>
-          <Text style={styles.description_text}>
-            Save your masterpiece and revisit it anytime in your personal gallery.
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.card}>
-      <Ionicons name="settings" size={40} style={styles.icon} />
-        <View style={styles.textContainer}>
-          <Text style={styles.subtitle_text}>4. Adjust Your Settings</Text>
-          <Text style={styles.description_text}>
-            Personalize your Artify experience by tweaking your settings to suit your style.
-          </Text>
-        </View>
-      </View>
+      {cardData.map((card, index) => (
+        <Card key={index} {...card} />
+      ))}
       <View style={styles.textContainer}>
-          <Text style={styles.last_description_text}>All done! Have fun exploring Artify!</Text>
+        <Text style={styles.last_description_text}>
+          All done! Have fun exploring Artify!
+        </Text>
       </View>
     </Screen>
   );

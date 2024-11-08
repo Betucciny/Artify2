@@ -45,7 +45,7 @@ export default function Screen({ title, children }: ScreenProps) {
           }}
         />
         <Image
-          source={require('/Users/karinajoannaxochipamendoza/Documents/GitHub/Artify2/assets/images/logo3.png')}
+          source={require("../assets/images/logo3.png")}
           style={{ width: 40, height: 40 }}
         />
         <Text

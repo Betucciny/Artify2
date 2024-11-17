@@ -37,10 +37,13 @@ export const ImageProvider = ({ children }: { children: ReactNode }) => {
 
   const writeImages = async () => {
     return Promise.all(
-      images.map((image) => {
-        return FileSystem.writeAsStringAsync(image.path, image.base64, {
-          encoding: FileSystem.EncodingType.Base64,
-        });
+      images.map(async (image) => {
+        const fileInfo = await FileSystem.getInfoAsync(image.path);
+        if (!fileInfo.exists) {
+          return FileSystem.writeAsStringAsync(image.path, image.base64, {
+            encoding: FileSystem.EncodingType.Base64,
+          });
+        }
       }),
     );
   };

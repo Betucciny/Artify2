@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
-import { useAssets, Asset } from "expo-asset";
-import { data_styles, Style } from "../../constants/styles";
+import { Asset } from "expo-asset";
+import { data_styles } from "../../constants/styles";
+import * as FileSystem from "expo-file-system";
+import { images } from "@/constants/images";
 
 // Define the shape of the assets object
 export interface LoadedImageInfo {
@@ -33,49 +35,47 @@ export const ImageProvider = ({ children }: { children: ReactNode }) => {
   const [dataStyles, setDataStyles] = useState<LoadedStyle[] | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const allImages = data_styles.flatMap((style) =>
-    style.images.map((image) => image.src as number),
-  );
+  const writeImages = async () => {
+    return Promise.all(
+      images.map((image) => {
+        return FileSystem.writeAsStringAsync(image.path, image.base64, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+      }),
+    );
+  };
 
-  const [imageSources, error] = useAssets(allImages);
+  const loadImages = () => {
+    const loadedStyles: LoadedStyle[] = data_styles.map(
+      (style): LoadedStyle => {
+        const loadedImages: LoadedImageInfo[] = style.images.map((image) => {
+          const asset = Asset.fromURI(image.src);
+          return {
+            src: asset,
+            title: image.title,
+            author: image.author,
+            description: image.description,
+          };
+        });
+        return {
+          name: style.name,
+          images: loadedImages,
+          description: style.description,
+        };
+      },
+    );
+    setDataStyles(loadedStyles);
+    setLoading(false);
+  };
+
+  const doAll = async () => {
+    await writeImages();
+    loadImages();
+  };
 
   useEffect(() => {
-    const loadImages = async () => {
-      if (imageSources) {
-        const imagesDownloading = imageSources.map((image) =>
-          image.downloadAsync(),
-        );
-        await Promise.all(imagesDownloading);
-
-        const loadedStyles: LoadedStyle[] = data_styles.map(
-          (style, styleIndex): LoadedStyle => {
-            const loadedImages: LoadedImageInfo[] = style.images.map(
-              (image, imageIndex) => {
-                const asset =
-                  imageSources[styleIndex * style.images.length + imageIndex];
-                return {
-                  src: asset!,
-                  title: image.title,
-                  author: image.author,
-                  description: image.description,
-                };
-              },
-            );
-            return {
-              name: style.name,
-              images: loadedImages,
-              description: style.description,
-            };
-          },
-        );
-
-        setDataStyles(loadedStyles);
-        setLoading(false);
-      }
-    };
-
-    loadImages();
-  }, [imageSources]);
+    doAll();
+  }, []);
 
   return (
     <AssetContext.Provider value={{ dataStyles, loading }}>

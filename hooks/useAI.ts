@@ -45,8 +45,8 @@ export default function useAI() {
     asset: Asset,
     dimension: number,
   ): Promise<Float32Array | null> {
-    if (!asset || !asset.localUri) return null;
-    const localUri = asset.localUri;
+    if (!asset || !asset.uri) return null;
+    const localUri = asset.uri;
     const base64Image = await FileSystem.readAsStringAsync(localUri, {
       encoding: FileSystem.EncodingType.Base64,
     });

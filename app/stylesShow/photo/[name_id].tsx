@@ -25,7 +25,7 @@ export default function Photo() {
     return null;
   }
 
-  const backgroundAssetUri = imageData.src.localUri;
+  const backgroundAssetUri = imageData.src.uri;
 
   const styles = StyleSheet.create({
     mainContainer: {

@@ -110,7 +110,7 @@ export default function CarruselArt({ data }: CarruselArtProps) {
             onPress={() => handlePress(index)}
             style={styles.imageContainer}
           >
-            <Image source={item.src.localUri} style={styles.backgroundImage} />
+            <Image source={item.src.uri} style={styles.backgroundImage} />
           </TouchableOpacity>
         ))}
       </ScrollView>

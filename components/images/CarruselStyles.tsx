@@ -38,7 +38,7 @@ export default function CarruselStyles({
     return (
       <TouchableOpacity onPress={() => onPress(index)}>
         <Surface style={styles.itemContainer}>
-          <Image source={item.localUri} style={styles.image} />
+          <Image source={item.uri} style={styles.image} />
           <Text variant="headlineSmall" numberOfLines={1} ellipsizeMode="tail">
             {title}
           </Text>

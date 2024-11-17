@@ -28,11 +28,11 @@ export default function Gallery() {
         return;
       }
       const pagedInfo = await MediaLibrary.getAssetsAsync({ album: almbum });
-      const assets = pagedInfo.assets.map((asset) => Asset.fromURI(asset.uri));
-      try{
-        await Promise.all(
-          assets.map((asset) => asset.downloadAsync()),
-        )
+      const assets = pagedInfo.assets
+        .map((asset) => Asset.fromURI(asset.uri))
+        .reverse();
+      try {
+        await Promise.all(assets.map((asset) => asset.downloadAsync()));
       } catch (error) {
         console.log("Failed to download images:", error);
       }
@@ -41,7 +41,6 @@ export default function Gallery() {
       setLoading(false);
     }
     getImages();
-
   }, [isFocused, setImageAssets, setLoading]);
 
   const styles = StyleSheet.create({

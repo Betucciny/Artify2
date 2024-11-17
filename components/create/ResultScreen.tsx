@@ -17,7 +17,6 @@ const height = Dimensions.get("window").height;
 export default function ResultScreen({ result }: ResultScreenProps) {
   const router = useRouter();
   const [dialogVisible, setDialogVisible] = useState(false);
-  const [confirmSave, setConfirmSave] = useState(false);
 
   const imageUri = result.localUri ? result.localUri : result.uri;
 
@@ -68,10 +67,14 @@ export default function ResultScreen({ result }: ResultScreenProps) {
             </Dialog.Content>
             <Dialog.Actions>
               <Button onPress={hideDialog}>Cancel</Button>
-              <Button onPress={() => {
-                hideDialog();
-                discardImage();
-              }}>Yes</Button>
+              <Button
+                onPress={() => {
+                  hideDialog();
+                  discardImage();
+                }}
+              >
+                Yes
+              </Button>
             </Dialog.Actions>
           </Dialog>
         </Portal>

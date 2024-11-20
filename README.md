@@ -1,50 +1,118 @@
-# Welcome to your Expo app 👋
+# Expo Image Styling App - *Artify2*
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This repository contains a cross-platform mobile application built with **Expo** and **React Native**. The app, **Artify2**, allows users to apply various styles to images, making it a versatile tool for quick image customization and enhancement. It is fully compatible with both **iOS** and **Android** devices.
 
-## Get started
+---
 
-1. Install dependencies
+## Features
 
+- **Cross-Platform Support**: Runs seamlessly on both iOS and Android.
+- **Image Upload**: Users can select images from their gallery or capture photos directly from the camera.
+- **Styling Tools**:
+  - Apply filters (e.g., grayscale, sepia, brightness adjustments).
+  - Resize, crop, or rotate images.
+  - Add overlays, borders, or other graphical enhancements.
+- **Real-Time Preview**: View changes as you apply styles.
+- **Export Options**: Save the styled images to your device or share them on social media.
+- **Offline Mode**: Basic styling features work without an internet connection.
+- **Development Build for Debug**: A special mode for developers to test and debug new features.
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Install [Node.js](https://nodejs.org/) (v16 or higher recommended).
+- Install the Expo CLI:
+  ```bash
+  npm install -g expo-cli
+  ```
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Betucciny/Artify2.git
+   cd Artify2
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. Start the Expo development server:
    ```bash
-    npx expo start
+   expo start
    ```
 
-In the output, you'll find options to open the app in a
+### Running on Devices
+- **iOS**: Use the Expo Go app from the App Store to scan the QR code in the Expo CLI.
+- **Android**: Use the Expo Go app from Google Play to scan the QR code in the Expo CLI.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Folder Structure
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+Artify2/
+├── app/          # 
+├── assets/      # Static assets like images and icons
+├── components/         # Reusable React Components
+├── constants/          # Constants for the app
+├── hooks/           # Hooks for the React components
+├── patches/           # Patches for the libraries used
+├── app.json         # App configuration for Expo
+├── LICENSE          # License file
+└── package.json     # Project dependencies and scripts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## License
 
-To learn more about developing your project with Expo, look at the following resources:
+The project is licensed under the custom **Artify2 License Agreement**.  
+This license permits **non-commercial use** only. Any commercial use, including selling derivatives or making profits from the app or its derivatives, is strictly prohibited.  
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+See the [LICENSE](LICENSE) file for the full terms and conditions.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## Development Build for Debug
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+To test and debug the application:
+1. Ensure you are running the development server (`expo start`).
+2. Launch the development build for the app and launch it
+3. Any new features or changes you make will be hot-reloaded for immediate feedback.
+4. **Note**: Debug builds are strictly for development purposes and should not be distributed.
+
+---
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository.
+2. Create a feature branch:  
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:  
+   ```bash
+   git commit -m "Add feature description"
+   ```
+4. Push to your branch:  
+   ```bash
+   git push origin feature-name
+   ```
+5. Submit a pull request.
+
+---
+
+## Contact
+
+For questions or suggestions, please contact:  
+[Betucciny on GitHub](https://github.com/Betucciny)  
+
+---
+
+### Happy Coding! 🚀

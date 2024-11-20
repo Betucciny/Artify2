@@ -1,0 +1,53 @@
+# Artify2 License Agreement  
+
+**Author**: Betucciny  
+**Repository**: Artify2  
+
+---
+
+This license applies to the code and assets found in the `Artify2` repository.
+
+---
+
+## Terms and Conditions
+
+### **1. Non-Commercial Use**  
+You may use, modify, and distribute this work under the following conditions:  
+- **You may not use this work or any derivative works for commercial purposes.**  
+- Any usage intended to generate revenue, directly or indirectly, is strictly prohibited.  
+
+### **2. Attribution**  
+You must give appropriate credit to the original author (Betucciny), provide a link to the repository, and indicate if changes were made.  
+- Attribution must be clearly visible in any derivative work or distribution.  
+- The attribution should not imply endorsement by Betucciny without explicit written consent.  
+
+### **3. Development Build for Debug**  
+You are allowed to create a **development build** for testing and debugging purposes under the following restrictions:  
+- Development builds must not be distributed outside the development team.  
+- Debug builds should be clearly labeled as **Development Use Only** and must not be used in a production environment.  
+
+### **4. Modification and Derivative Works**  
+- You are permitted to modify the code and create derivative works, provided they adhere to the terms outlined in this license.  
+- All derivative works must include this license and comply with the **Non-Commercial Use** clause.  
+
+### **5. Disclaimer**  
+This software is provided "as is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, or non-infringement. In no event shall the author be liable for any claim, damages, or other liability arising from the use of this software.  
+
+---
+
+## Prohibited Actions  
+
+- Using the original work or derivatives for financial gain.  
+- Selling access to the work or its derivatives.  
+- Using the name "Artify2" or "Betucciny" in a manner that implies endorsement or ownership of unrelated projects.  
+
+---
+
+## Contact  
+
+For inquiries about this license or obtaining permissions beyond the scope of this agreement, please contact:  
+[Betucciny on GitHub](https://github.com/Betucciny)  
+
+---
+
+By using or distributing this software, you agree to abide by the terms and conditions outlined above.  

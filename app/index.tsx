@@ -53,7 +53,11 @@ export default function App() {
     <View style={styles.container_global}>
       <View style={styles.sub_container}>
         <Image
-          source={require("../assets/images/logo1.png")}
+          source={
+            theme.dark
+              ? require("../assets/images/logo2.png")
+              : require("../assets/images/logo1.png")
+          }
           style={styles.image}
         />
         <Text style={styles.description_text}>Apply Artistic Styles</Text>

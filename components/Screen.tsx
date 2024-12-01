@@ -1,13 +1,22 @@
 import { View, StyleSheet, ScrollView, Image } from "react-native";
-import { IconButton, Text, useTheme } from "react-native-paper";
+import { IconButton, Text, useTheme, Button } from "react-native-paper";
 import { router } from "expo-router";
 
 type ScreenProps = {
   title: string;
+  button?: boolean;
+  onPress?: () => void;
+  active?: boolean;
   children: React.ReactNode;
 };
 
-export default function Screen({ title, children }: ScreenProps) {
+export default function Screen({
+  title,
+  children,
+  button = false,
+  active = false,
+  onPress,
+}: ScreenProps) {
   const theme = useTheme();
   const styles = StyleSheet.create({
     container: {
@@ -45,17 +54,27 @@ export default function Screen({ title, children }: ScreenProps) {
           }}
         />
         <Image
-          source={require("../assets/images/logo3.png")}
+          source={
+            theme.dark
+              ? require("../assets/images/logo4.png")
+              : require("../assets/images/logo3.png")
+          }
           style={{ width: 40, height: 40 }}
         />
-        <Text
-          variant="headlineLarge"
-          style={styles.titleText}
-          numberOfLines={1}
-          ellipsizeMode="tail"
-        >
-          {title}
-        </Text>
+        {button ? (
+          <Button onPress={onPress} mode="contained" disabled={!active}>
+            {title}
+          </Button>
+        ) : (
+          <Text
+            variant="headlineLarge"
+            style={styles.titleText}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {title}
+          </Text>
+        )}
       </View>
       <ScrollView style={styles.contentContainer}>{children}</ScrollView>
     </View>

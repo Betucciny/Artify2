@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -7,7 +7,7 @@ import {
   PanResponder,
 } from "react-native";
 import { useTheme, Button, Text } from "react-native-paper";
-import Spacer from "../Spacer";
+import { TouchableOpacity } from "react-native";
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -23,9 +23,10 @@ export default function InfoCard({
   buttonTitle,
 }: InfoCardProps) {
   const { colors } = useTheme();
+  const [open, setOpen] = useState(false);
   const [height, setHeight] = useState(windowHeight * 0.5);
   const maxHeight = windowHeight * 0.5;
-  const initialTranslateY = height * 0.5 -50;
+  const initialTranslateY = height * 0.5 - 50;
   const finalTranslateY = height * 0;
   const translateY = useRef(new Animated.Value(initialTranslateY)).current; // Start with the card partially hidden
 
@@ -37,6 +38,13 @@ export default function InfoCard({
     outputRange: [expandedScale, collapsedScale],
     extrapolate: "clamp",
   });
+
+  useEffect(() => {
+    Animated.spring(translateY, {
+      toValue: open ? finalTranslateY : initialTranslateY,
+      useNativeDriver: true,
+    }).start();
+  }, [open]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -55,11 +63,13 @@ export default function InfoCard({
             toValue: initialTranslateY,
             useNativeDriver: true,
           }).start();
+          setOpen(false);
         } else {
           Animated.spring(translateY, {
             toValue: finalTranslateY,
             useNativeDriver: true,
           }).start();
+          setOpen(true);
         }
       },
     }),
@@ -105,11 +115,13 @@ export default function InfoCard({
         setHeight(Math.max(event.nativeEvent.layout.height, maxHeight))
       }
     >
-      <View style={styles.titleContainer}>
-        <Text variant="titleLarge" style={styles.title}>
-          Info
-        </Text>
-      </View>
+      <TouchableOpacity onPress={() => setOpen(!open)}>
+        <View style={styles.titleContainer}>
+          <Text variant="titleLarge" style={styles.title}>
+            Info
+          </Text>
+        </View>
+      </TouchableOpacity>
       {!!onPress && !!buttonTitle && (
         <Button mode="elevated" onPress={onPress}>
           {buttonTitle}

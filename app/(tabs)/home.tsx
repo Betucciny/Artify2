@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Surface, Text } from "react-native-paper";
 import { CardProps, cardData } from "@/constants/extras";
 import { useTheme } from "react-native-paper";
+import Spacer from "@/components/Spacer";
 
 const styles = StyleSheet.create({
   title_text: {
@@ -20,7 +21,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10,
   },
-
+  surface: {
+    borderRadius: 10,
+  },
   icon: {
     width: 50,
     height: 50,
@@ -30,9 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    borderRadius: 10,
     padding: 15,
-    marginVertical: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
@@ -40,14 +41,13 @@ const styles = StyleSheet.create({
   last_description_text: {
     textAlign: "center",
     margin: 10,
-    marginBottom: 150,
   },
 });
 
 function Card({ icon, title, description }: CardProps) {
   const { colors } = useTheme();
   return (
-    <Surface style={styles.card}>
+    <View style={styles.card}>
       <Ionicons
         name={icon}
         size={40}
@@ -58,18 +58,23 @@ function Card({ icon, title, description }: CardProps) {
         <Text style={styles.subtitle_text}>{title}</Text>
         <Text style={styles.description_text}>{description}</Text>
       </View>
-    </Surface>
+    </View>
   );
 }
 
 export default function Home() {
+  const theme = useTheme();
   return (
     <Screen title="Artify">
       <Text variant="titleLarge" style={styles.title_text}>
         Welcome to Artify!
       </Text>
       <Image
-        source={require("../../assets/images/logo3.png")}
+        source={
+          theme.dark
+            ? require("../../assets/images/logo4.png")
+            : require("../../assets/images/logo3.png")
+        }
         style={{ width: 100, height: 100, alignSelf: "center" }}
       />
       <Text variant="bodyMedium" style={styles.description_text}>
@@ -78,14 +83,17 @@ export default function Home() {
         your creativity!
       </Text>
 
-      {cardData.map((card, index) => (
-        <Card key={index} {...card} />
-      ))}
+      <Surface style={styles.surface}>
+        {cardData.map((card, index) => (
+          <Card key={index} {...card} />
+        ))}
+      </Surface>
       <View style={styles.textContainer}>
         <Text style={styles.last_description_text}>
           All done! Have fun exploring Artify!
         </Text>
       </View>
+      <Spacer margin={60} />
     </Screen>
   );
 }

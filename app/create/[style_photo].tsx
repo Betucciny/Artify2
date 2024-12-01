@@ -68,14 +68,16 @@ export default function Create() {
   return (
     <>
       <Portal>
-        <Modal
-          visible={loading != null}
-          contentContainerStyle={styles.container}
-        >
+        <Modal visible={loading} contentContainerStyle={styles.container}>
           <ActivityIndicator animating={true} size="large" />
         </Modal>
       </Portal>
-      <Screen title="Create">
+      <Screen
+        title="Create"
+        button={true}
+        onPress={createStyleImage}
+        active={!loading}
+      >
         <Stack.Screen options={{ headerShown: false }} />
         <View style={styles.container}>
           <Surface style={styles.surfaceText}>
@@ -117,6 +119,21 @@ export default function Create() {
         </View>
         <View style={styles.container}>
           <Surface style={styles.surfaceText}>
+            <Text variant="titleMedium">Porcentage</Text>
+          </Surface>
+          <View
+            style={[
+              styles.sliderContainer,
+              { backgroundColor: colors.surface },
+            ]}
+          >
+            <Text variant="labelMedium" style={{ color: colors.onSurface }}>
+              Choose a porcentage
+            </Text>
+          </View>
+        </View>
+        <View style={styles.container}>
+          <Surface style={styles.surfaceText}>
             <Text variant="titleMedium">Content</Text>
           </Surface>
           <View
@@ -146,13 +163,6 @@ export default function Create() {
           </View>
         </View>
       </Screen>
-      <View style={styles.continueButton}>
-        <FAB
-          variant="secondary"
-          icon="arrow-right-drop-circle-outline"
-          onPress={createStyleImage}
-        />
-      </View>
     </>
   );
 }
@@ -199,5 +209,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 10,
     right: 10,
+  },
+  sliderContainer: {
+    width: "90%",
+    height: 70,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

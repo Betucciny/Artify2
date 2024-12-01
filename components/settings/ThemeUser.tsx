@@ -55,18 +55,16 @@ export default function ThemeUser() {
       alignItems: "center",
     },
     lightTheme: {
-      height: 200,
-      borderRadius: 20,
-      width: 100,
-      margin: 10,
-      backgroundColor: Colors.light.primary,
+      backgroundColor: Colors.light.background,
     },
     darkTheme: {
-      height: 200,
+      backgroundColor: Colors.dark.background,
+    },
+    theme: {
+      height: 100,
       borderRadius: 20,
       width: 100,
       margin: 10,
-      backgroundColor: Colors.dark.primary,
     },
     title: {
       fontWeight: "bold",
@@ -86,12 +84,12 @@ export default function ThemeUser() {
         >
           <View style={styles.containerThemes}>
             <View style={styles.containerColumnThemes}>
-              <View style={styles.lightTheme} />
+              <View style={[styles.theme, styles.lightTheme]} />
               <Text variant="titleMedium">Light</Text>
               <RadioButton value="light" />
             </View>
             <View style={styles.containerColumnThemes}>
-              <View style={styles.darkTheme} />
+              <View style={[styles.theme, styles.darkTheme]} />
               <Text variant="titleMedium">Dark</Text>
               <RadioButton value="dark" />
             </View>

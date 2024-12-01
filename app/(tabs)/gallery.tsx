@@ -7,6 +7,7 @@ import { ImageURISource, View, StyleSheet } from "react-native";
 import { Asset } from "expo-asset";
 import * as MediaLibrary from "expo-media-library";
 import { useIsFocused } from "@react-navigation/native";
+import Spacer from "@/components/Spacer";
 
 export default function Gallery() {
   const [isVisible, setIsVisible] = useState(false);
@@ -79,6 +80,7 @@ export default function Gallery() {
           <ActivityIndicator animating={true} size="large" />
         </View>
       )}
+      <Spacer margin={60} />
     </Screen>
   );
 }

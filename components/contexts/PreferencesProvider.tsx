@@ -3,6 +3,7 @@ import React, { createContext, useState, ReactNode, useEffect } from "react";
 import * as MediaLibrary from "expo-media-library";
 import { Alert } from "react-native";
 import { Platform, Linking } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type Preferences = {
   permissions: {
@@ -49,11 +50,22 @@ export const PreferencesProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  const getColorSchemeMemory = async () => {
+    AsyncStorage.getItem("colorScheme").then((value) => {
+      if (value) {
+        setColorScheme(value as Preferences["colorScheme"]);
+      } else {
+        AsyncStorage.setItem("colorScheme", "system");
+      }
+    });
+  };
+
   useEffect(() => {
     setPermissions({
       camera: cameraPermission,
       gallery: mediaPermission,
     });
+    getColorSchemeMemory();
   }, [cameraPermission, mediaPermission]);
 
   const askCameraPermission = async () => {
@@ -116,6 +128,7 @@ export const PreferencesProvider = ({ children }: { children: ReactNode }) => {
       ...prev,
       colorScheme,
     }));
+    AsyncStorage.setItem("colorScheme", colorScheme);
   };
 
   const setIsCreateOnTheStack = (isCreateOnTheStack: boolean) => {

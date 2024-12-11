@@ -16,6 +16,7 @@ import Screen from "@/components/Screen";
 import { Image } from "expo-image";
 import useDataAssets from "@/hooks/useDataAssets";
 import ResultScreen from "@/components/create/ResultScreen";
+import Slider from "@react-native-community/slider";
 
 export default function Create() {
   const { style_photo } = useLocalSearchParams();
@@ -33,6 +34,8 @@ export default function Create() {
     openImagePickerAsync,
     openCameraAsync,
     createStyleImage,
+    stylePercentage,
+    setStylePercentage,
   } = useAI();
 
   const { dataStyles } = useDataAssets();
@@ -119,7 +122,7 @@ export default function Create() {
         </View>
         <View style={styles.container}>
           <Surface style={styles.surfaceText}>
-            <Text variant="titleMedium">Porcentage</Text>
+            <Text variant="titleMedium">Percentage</Text>
           </Surface>
           <View
             style={[
@@ -127,8 +130,20 @@ export default function Create() {
               { backgroundColor: colors.surface },
             ]}
           >
+            <Slider
+              style={{ width: "90%", marginTop: 20 }}
+              minimumValue={0}
+              maximumValue={100}
+              minimumTrackTintColor={colors.primary}
+              maximumTrackTintColor={colors.onSurface}
+              thumbTintColor={colors.primary}
+              value={stylePercentage}
+              onValueChange={(value) => {
+                setStylePercentage(value);
+              }}
+            />
             <Text variant="labelMedium" style={{ color: colors.onSurface }}>
-              Choose a porcentage
+              {stylePercentage | 0}%
             </Text>
           </View>
         </View>
@@ -212,7 +227,6 @@ const styles = StyleSheet.create({
   },
   sliderContainer: {
     width: "90%",
-    height: 70,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",

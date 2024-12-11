@@ -16,10 +16,9 @@ import { usePreferences } from "@/hooks/usePreferences";
 
 type InfoCardArtProps = {
   data: LoadedImageInfo;
-  styleId: string;
 };
 
-export default function InfoCardArt({ data, styleId }: InfoCardArtProps) {
+export default function InfoCardArt({ data }: InfoCardArtProps) {
   const { preferences } = usePreferences();
   const router = useRouter();
   const styles = StyleSheet.create({
@@ -40,36 +39,8 @@ export default function InfoCardArt({ data, styleId }: InfoCardArtProps) {
     },
   });
 
-  const handleOnPress = () => {
-    if (preferences.isCreateOnTheStack) {
-      router.back();
-      router.back();
-      router.back();
-
-      setTimeout(() => {
-        router.setParams({
-          style_photo: styleId,
-        });
-      }, 100);
-    } else {
-      router.back();
-      router.back();
-      setTimeout(() => {
-        router.setParams({
-          style_photo: styleId,
-        });
-      }, 100);
-      router.push({
-        pathname: "/create/[style_photo]",
-        params: {
-          style_photo: styleId,
-        },
-      });
-    }
-  };
-
   return (
-    <InfoCard onPress={handleOnPress} buttonTitle="Use as Style">
+    <InfoCard>
       <ScrollView style={styles.contentContainer}>
         <Text variant="headlineLarge" style={styles.name}>
           {data.title}

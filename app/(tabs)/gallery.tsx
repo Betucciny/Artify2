@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { Text, ActivityIndicator } from "react-native-paper";
 import Screen from "@/components/Screen";
-import GalleryPreview from "react-native-gallery-preview";
+import GalleryPreview, {
+  GalleryImageComponentProps,
+} from "react-native-gallery-preview";
 import PhotoGallery from "@/components/images/PhotoGallery";
 import { ImageURISource, View, StyleSheet } from "react-native";
 import { Asset } from "expo-asset";
 import * as MediaLibrary from "expo-media-library";
 import { useIsFocused } from "@react-navigation/native";
 import Spacer from "@/components/Spacer";
+import ImagePreview from "@/components/images/ImagePreview";
+import * as Sharing from "expo-sharing";
 
 export default function Gallery() {
   const [isVisible, setIsVisible] = useState(false);
@@ -54,6 +58,10 @@ export default function Gallery() {
     },
   });
 
+  function shareImage(uri: string) {
+    Sharing.shareAsync(uri);
+  }
+
   return (
     <Screen title="Gallery">
       {imageAssets.length === 0 ? (
@@ -69,6 +77,17 @@ export default function Gallery() {
                 return { uri: asset.uri } as ImageURISource;
               }) as ImageURISource[]
             }
+            ImageComponent={(props: GalleryImageComponentProps) => {
+              const { source, style } = props;
+              return (
+                <ImagePreview
+                  onPress={() => {
+                    shareImage(source.uri as string);
+                  }}
+                  image={source}
+                />
+              );
+            }}
             isVisible={isVisible}
             onRequestClose={() => setIsVisible(false)}
             initialIndex={initialIndex}

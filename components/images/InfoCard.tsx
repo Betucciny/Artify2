@@ -78,6 +78,8 @@ export default function InfoCard({
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      borderColor: colors.outline,
+      borderWidth: 1,
       backgroundColor: colors.background,
       position: "absolute",
       bottom: 0,

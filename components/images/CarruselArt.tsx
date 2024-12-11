@@ -32,9 +32,12 @@ export default function CarruselArt({ data }: CarruselArtProps) {
       alignItems: "center",
     },
     backgroundImage: {
+      borderRadius: 20,
+      borderColor: "black",
+      borderWidth: 1,
       resizeMode: "cover",
-      height: "100%",
-      width: windowWidth,
+      height: "80%",
+      width: windowWidth * 0.8,
     },
     arrow: {
       position: "absolute",
@@ -45,10 +48,10 @@ export default function CarruselArt({ data }: CarruselArtProps) {
       borderRadius: 20,
     },
     leftArrow: {
-      left: 10,
+      left: 0,
     },
     rightArrow: {
-      right: 10,
+      right: 0,
     },
     arrowText: {
       color: "white",

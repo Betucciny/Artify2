@@ -6,6 +6,7 @@ import BackButton from "@/components/BackButton";
 import useDataAssets from "@/hooks/useDataAssets";
 import { usePreferences } from "@/hooks/usePreferences";
 import InfoCardArt from "@/components/images/InfoCardArt";
+import UseStyleButton from "@/components/images/UseStyleButton";
 
 export default function Photo() {
   const { name_id } = useLocalSearchParams();
@@ -38,12 +39,41 @@ export default function Photo() {
     },
   });
 
+  const handleOnPress = () => {
+    if (preferences.isCreateOnTheStack) {
+      router.back();
+      router.back();
+      router.back();
+
+      setTimeout(() => {
+        router.setParams({
+          style_photo: name_id as string,
+        });
+      }, 100);
+    } else {
+      router.back();
+      router.back();
+      setTimeout(() => {
+        router.setParams({
+          style_photo: name_id as string,
+        });
+      }, 100);
+      router.push({
+        pathname: "/create/[style_photo]",
+        params: {
+          style_photo: name_id as string,
+        },
+      });
+    }
+  };
+
   return (
     <View style={styles.mainContainer}>
       <BackButton />
+      <UseStyleButton onPress={handleOnPress} text="Use as Style" />
       <Stack.Screen options={{ headerShown: false }} />
       <Image source={backgroundAssetUri} style={styles.backgroundImage} />
-      <InfoCardArt data={imageData} styleId={name_id as string} />
+      <InfoCardArt data={imageData} />
     </View>
   );
 }

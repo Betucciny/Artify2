@@ -1,7 +1,23 @@
 import { router } from "expo-router";
-import { View, StyleSheet, Text, Image } from "react-native";
-import { ActivityIndicator, Button, useTheme } from "react-native-paper";
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+import {
+  ActivityIndicator,
+  useTheme,
+  Text,
+  Icon,
+  Surface,
+} from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
 import useDataAssets from "@/hooks/useDataAssets";
+import { cardData } from "@/constants/extras";
+
+const { width } = Dimensions.get("window");
 
 export default function App() {
   const theme = useTheme();
@@ -14,34 +30,46 @@ export default function App() {
       alignItems: "center",
     },
     sub_container: {
-      justifyContent: "center",
+      justifyContent: "space-around",
       alignItems: "center",
+      gap: 20,
     },
     title_text: {
-      color: theme.colors.primary,
-      textAlign: "center",
-      fontSize: 30,
-      fontWeight: "bold",
+      color: theme.colors.onPrimaryContainer,
     },
     description_text: {
       color: theme.colors.onBackground,
-      fontSize: 20,
-      fontWeight: "normal",
-    },
-    logo_image: {
-      borderRadius: 100,
-      width: 300,
-      height: 300,
     },
     button: {
-      borderRadius: 100,
-      padding: 20,
-      backgroundColor: "green",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+      borderRadius: 20,
+      gap: 10,
+      padding: 10,
+      paddingHorizontal: 20,
+      backgroundColor: theme.colors.primaryContainer,
     },
     image: {
-      width: 250,
-      height: 250,
+      width: width * 0.9,
       resizeMode: "contain",
+    },
+    icon_container: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+    icon: {
+      width: 60,
+      height: 60,
+      marginRight: 15,
+      borderRadius: 10,
+      padding: 10,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
 
@@ -60,15 +88,35 @@ export default function App() {
           }
           style={styles.image}
         />
-        <Text style={styles.description_text}>Apply Artistic Styles</Text>
+        <Text variant="labelLarge" style={styles.description_text}>
+          Apply Artistic Styles
+        </Text>
+        <View style={styles.icon_container}>
+          {cardData.map((card) => (
+            <Surface key={card.title} style={styles.icon}>
+              <Ionicons
+                name={card.icon}
+                size={40}
+                color={theme.colors.onPrimaryContainer}
+              />
+            </Surface>
+          ))}
+        </View>
       </View>
       <View style={styles.sub_container}>
         {loading ? (
-          <ActivityIndicator />
+          <ActivityIndicator size="large" />
         ) : (
-          <Button mode="contained" onPress={controlOnPress}>
-            Get Started
-          </Button>
+          <TouchableOpacity onPress={controlOnPress} style={styles.button}>
+            <Icon
+              source="play"
+              size={50}
+              color={theme.colors.onPrimaryContainer}
+            />
+            <Text variant="displaySmall" style={styles.title_text}>
+              Start
+            </Text>
+          </TouchableOpacity>
         )}
       </View>
     </View>

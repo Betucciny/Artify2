@@ -6,10 +6,12 @@ import useDataAssets from "@/hooks/useDataAssets";
 import BackButton from "@/components/BackButton";
 import InfoCardStyle from "@/components/images/InfoCardStyle";
 import CarruselArt from "@/components/images/CarruselArt";
+import { useTheme } from "react-native-paper";
 
 export default function Style() {
   const { name } = useLocalSearchParams();
   const { dataStyles } = useDataAssets();
+  const { colors } = useTheme();
 
   const router = useRouter();
 
@@ -29,6 +31,7 @@ export default function Style() {
     container: {
       flex: 1,
       padding: 10,
+      backgroundColor: colors.surface,
     },
     backgroundImage: {
       resizeMode: "cover",

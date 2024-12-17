@@ -19,7 +19,7 @@ export const faqs = [
   {
     question: "How do I contact support?",
     answer:
-      "If you need assistance, our support team is available to help. You can reach out to us at support@yourapp.com for any questions or technical issues.",
+      "If you need assistance or want to report a problem, please visit our GitHub repository at www.github.com/betucciny/artify2 and open an issue.",
   },
   {
     question: "Is Artify free?",
@@ -31,49 +31,39 @@ export const privacy_content = [
   {
     subheading: "Introduction",
     paragraph:
-      "Welcome to our app! This privacy policy outlines how we handle your personal data when using our image transformation app powered by AI. By using this app, you agree to the collection and use of information in accordance with this policy.",
+      "Welcome to our app! This privacy statement outlines our commitment to user privacy. We do not collect any personal data from users when using our image transformation app powered by AI.",
   },
   {
     subheading: "Information Collection",
     paragraph:
-      "We collect different types of information for various purposes to provide and improve our service. This may include, but is not limited to:",
-    listItems: [
-      "• Personal information (e.g., name, email address).",
-      "• Images you upload for style conversion.",
-      "• App usage data (e.g., interactions, preferences).",
-    ],
+      "We do not collect any personal information, images, or app usage data. Your privacy is our priority, and we ensure that no data is stored or shared.",
   },
   {
     subheading: "Use of Information",
-    paragraph: "We use the collected information for purposes such as:",
-    listItems: [
-      "• Transforming images using AI algorithms.",
-      "• Improving app features and user experience.",
-      "• Communicating updates and promotional content (if opted in).",
-    ],
+    paragraph:
+      "Since we do not collect any information, there is no data to use for any purposes. All image processing is done locally on your device.",
   },
   {
     subheading: "Security of Data",
     paragraph:
-      "We prioritize the security of your data. All uploaded images are encrypted during transmission, and we ensure compliance with industry standards to protect your privacy.",
+      "We prioritize the security of your data. Since no data is collected or transmitted, there are no security concerns related to data storage or transmission.",
   },
   {
     subheading: "Data Retention",
     paragraph:
-      "Uploaded images are stored temporarily and deleted after processing is complete, unless explicitly saved by the user.",
+      "As we do not collect any data, there is no data retention policy. All images processed are handled locally on your device and are not stored by us.",
   },
   {
     subheading: "Your Rights",
     paragraph:
-      "You have the right to request access to, correction of, or deletion of your personal data at any time.",
+      "Since we do not collect any personal data, there are no rights to request access to, correction of, or deletion of data.",
   },
   {
     subheading: "Contact Us",
     paragraph:
-      "If you have any questions about this Privacy Policy, please contact us at support@yourapp.com.",
+      "If you have any questions or concerns about this Privacy Policy, please visit our GitHub repository at www.github.com/betucciny/artify2 and open an issue.",
   },
 ];
-
 export const terms_content = [
   {
     title: "1. Use of the Service",

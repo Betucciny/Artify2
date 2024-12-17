@@ -97,7 +97,7 @@ export default function App() {
               <Ionicons
                 name={card.icon}
                 size={40}
-                color={theme.colors.onPrimaryContainer}
+                color={theme.colors.onSurface}
               />
             </Surface>
           ))}

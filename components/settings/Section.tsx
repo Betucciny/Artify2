@@ -54,7 +54,7 @@ export default function Section({ title, items }: SectionProps) {
   return (
     <View style={styles.container}>
       <Text variant="titleMedium" style={styles.title}>
-        Device Permissions
+        {title}
       </Text>
       <Surface style={styles.surface}>
         {items.map((item, index) => (

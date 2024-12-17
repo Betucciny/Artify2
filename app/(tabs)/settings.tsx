@@ -19,10 +19,10 @@ const itemsAbout: ItemProps[] = [
 ];
 
 const itemsSupport: ItemProps[] = [
-  {
-    title: "Report a Problem",
-    href: "/extras/report_problem",
-  },
+  // {
+  //   title: "Report a Problem",
+  //   href: "/extras/report_problem",
+  // },
   {
     title: "FAQ",
     href: "/extras/faq",

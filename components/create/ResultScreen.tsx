@@ -1,12 +1,13 @@
 import { Asset } from "expo-asset";
-import { View, StyleSheet, Text } from "react-native";
-import { useTheme, Button, Dialog, Portal } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
+import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { Image } from "expo-image";
 import Screen from "../Screen";
-import { Dimensions } from "react-native";
+import { Dimensions, BackHandler } from "react-native";
 import * as MediaLibrary from "expo-media-library";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as Sharing from "expo-sharing";
 
 type ResultScreenProps = {
   result: Asset;
@@ -39,8 +40,26 @@ export default function ResultScreen({ result }: ResultScreenProps) {
     router.back();
   }
 
+  function shareImage(uri: string) {
+    Sharing.shareAsync(uri);
+  }
+
   const showDialog = () => setDialogVisible(true);
   const hideDialog = () => setDialogVisible(false);
+
+  useEffect(() => {
+    const backAction = () => {
+      showDialog();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <Screen title="Result">
@@ -57,6 +76,11 @@ export default function ResultScreen({ result }: ResultScreenProps) {
           </Button>
           <Button mode="contained" onPress={showDialog}>
             Discard
+          </Button>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button mode="contained" onPress={() => shareImage(imageUri)}>
+            Share
           </Button>
         </View>
         <Portal>

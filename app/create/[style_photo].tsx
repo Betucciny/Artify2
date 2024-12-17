@@ -227,6 +227,7 @@ const styles = StyleSheet.create({
   },
   sliderContainer: {
     width: "90%",
+    zIndex: -1,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",

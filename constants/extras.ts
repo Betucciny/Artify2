@@ -64,6 +64,7 @@ export const privacy_content = [
       "If you have any questions or concerns about this Privacy Policy, please visit our GitHub repository at www.github.com/betucciny/artify2 and open an issue.",
   },
 ];
+
 export const terms_content = [
   {
     title: "1. Use of the Service",
